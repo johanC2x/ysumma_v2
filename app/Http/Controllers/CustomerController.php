@@ -23,7 +23,7 @@ class CustomerController extends Controller{
     public function findByName($customer_id = null){
         if(!empty($customer_id)){
             $data = Clientes::where('nro_doc', 'like', '%' . $customer_id . '%')->first();
-            if(sizeof($data) > 0 && !empty($data)){
+            if(!empty($data)){
                 return array("success" => true, "data" => $data);
             }else{
                 return array("success" => false);

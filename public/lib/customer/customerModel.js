@@ -76,11 +76,14 @@ var customer = function () {
 
 	self.makeTable = () => {
 		let tbody = '';
+		let tfooter = '';
 		$("#tbl_items tbody").empty();
+		$("#tbl_items tfoot").empty();
 		if(self.list_items.length > 0){
+			var total = 0;
 			for(var i = 0;i < self.list_items.length;i++){
 				let obj = self.list_items[i];
-				tbody = `<tr>
+				tbody += `<tr>
 							<td><center>`+ obj.item_name +`</center></td>
 							<td><center>`+ obj.item_code +`</center></td>
 							<td><center>`+ obj.item_quantity +`</center></td>
@@ -89,6 +92,30 @@ var customer = function () {
 							<td><center>`+ obj.item_igv +`</center></td>
 							<td><center>`+ obj.item_import +`</center></td>
 						</tr>`;
+				total = total + parseFloat(obj.item_import);
+			}
+			if(total !== 0){
+				tfooter = `<tr>
+							<td colspan="6" style="text-align: right;">
+								TOTAL: 
+							</td>
+							<td>
+								<center>
+									`+ total +`
+								</center>
+							</td>
+						</tr>`;
+			}else{
+				tfooter = `<tr>
+								<td colspan="6" style="text-align: right;">
+									TOTAL: 
+								</td>
+								<td>
+									<center>
+										0.00
+									</center>
+								</td>
+							</tr>`;
 			}
 			$('#frm_add_item').bootstrapValidator("resetForm",true);
 		}else{
@@ -101,6 +128,7 @@ var customer = function () {
 					</tr>`;
 		}
 		$("#tbl_items tbody").append(tbody);
+		$("#tbl_items tfoot").append(tfooter);
 	};
 
 	return self;

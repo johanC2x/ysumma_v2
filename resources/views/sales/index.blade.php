@@ -39,6 +39,7 @@
 											<label>Ingresar DNI o RUC</label>
 											<input type="text" name="customer_id" id="customer_id" 
 													class="form-control">
+											<input type="hidden" name="cliente_id" id="cliente_id"/>
 										</div>
 									</div>
 									<div class="col-md-1">
@@ -191,11 +192,22 @@
 										<div class="form-group">
 											<label>Detracción:</label>
 											<label class="checkbox-inline">
-												<input type="checkbox" value="">Si
+												<input id="ck_det_in" name="ck_det_in" type="checkbox" value="">Si
 											</label>
 											<label class="checkbox-inline">
-												<input type="checkbox" value="">No
+												<input id="ck_det_out" name="ck_det_out" type="checkbox" value="">No
 											</label>
+										</div>
+									</div>
+									<div id="content_val_det" class="col-md-6">
+										<div class="form-group">
+											<label>Valor de Detracción (%):</label>
+											<select id="val_detraccion" name="val_detraccion" class="form-control" >
+												<option value="">Seleccionar</option>
+												<option value="1">10.00</option>
+												<option value="2">4.00</option>
+												<option value="3">12.00</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -203,10 +215,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="col-md-3">
-										<button id="btn_add_items" type="button" 
-												class="btn btn-primary btn_left">
-											Agregar Item
-										</button>
+										
 									</div>
 									<div class="col-md-5"></div>
 									<div class="col-md-2">
@@ -223,15 +232,16 @@
 									</div>
 								</div>
 							</div>
+							<input type="hidden" id="_item_list" name="_item_list"/>
 							<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
-						</form>
+						<br/>
+						<div id="msg_sales_validate"></div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<form role="form">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
@@ -254,6 +264,21 @@
 								</div>
 							</div>
 						</form>
+						<br/>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Total Igv:</label>
+									<input type="text" name="total_igv" id="total_igv" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Total Importe:</label>
+									<input type="text" name="total_importe" id="total_importe" class="form-control">
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -281,7 +306,7 @@
 										<div class="form-group">
 											<label>Cantidad</label>
 											<input type="number" name="item_quantity" id="item_quantity"
-													class="form-control" value="0" min="0" step="0.01" disabled="true"/>
+													class="form-control add_imp" value="0" min="0" step="0.01"/>
 										</div>
 									</div>
 								</div>
@@ -320,7 +345,7 @@
 									<div class="col-md-2">
 										<div class="form-group">
 											<label>Afectación</label>
-											<select name="item_afec" id="item_afec" class="form-control">
+											<select name="item_afec" id="item_afec" class="form-control add_imp">
 												<option value="">Seleccionar</option>
 												<option value="10">Gravado – Oneroso</option>
 												<option value="11">Gravado – Premios</option>
@@ -346,7 +371,7 @@
 										<div class="form-group">
 											<label>Val. de Venta</label>
 											<input type="number" name="item_price" id="item_price"
-													class="form-control" value="0" min="0" step="0.01"/>
+													class="form-control add_imp" value="0" min="0" step="0.01"/>
 										</div>
 									</div>
 									<div class="col-md-2">
@@ -372,7 +397,18 @@
 									</div>
 								</div>
 							</div>
+							<div class="col-md-2">
+								<button id="btn_add_items" type="button" class="btn btn-primary btn_left">
+									Agregar Item
+								</button>
+							</div>
+							<div class="col-md-2">
+								<button id="btn_clean_items" type="button" class="btn btn-primary btn_left">
+									Limpiar
+								</button>
+							</div>
 						</form>
+						<br/><br/>
 						<div class="row">
 							<div class="col-md-12">
 								<table id="tbl_items" class="table table-hover table-striped">
@@ -396,6 +432,18 @@
 											</td>
 										</tr>
 									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="6" style="text-align: right;">
+												TOTAL: 
+											</td>
+											<td>
+												<center>
+													0.00
+												</center>
+											</td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 						</div>
@@ -488,217 +536,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="{{ asset('/lib/sales.js') }}"></script>
-<script src="{{ asset('/lib/customer.js') }}"></script>
-
-<script type="text/javascript">
-	document.addEventListener("DOMContentLoaded",function(){
-
-		// VALIDACION FORMULARIO DE VENTAS =============================================== //
-		$('#frm_sales').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				fec_emision: {
-					validators: {
-						notEmpty: {
-							message: 'El campo fecha de emisión es requerido'
-						}
-					}
-				},
-				nro_serie: {
-					validators: {
-						notEmpty: {
-							message: 'El campo número de serie es requerido'
-						}
-					}
-				},
-				customer_name: {
-					validators: {
-						notEmpty: {
-							message: 'El campo nombre o razón social es requerido'
-						}
-					}
-				},
-				tipo_doc: {
-					validators: {
-						notEmpty: {
-							message: 'El campo tipo de documento es requerido'
-						}
-					}
-				},
-				nro_doc: {
-					validators: {
-						notEmpty: {
-							message: 'El campo número de documento es requerido'
-						}
-					}
-				},
-				direccion: {
-					validators: {
-						notEmpty: {
-							message: 'El campo dirección es requerido'
-						}
-					}
-				},
-				con_pago: {
-					validators: {
-						notEmpty: {
-							message: 'El campo condición de pago es requerido'
-						}
-					}
-				},
-				fec_vencimiento: {
-					validators: {
-						notEmpty: {
-							message: 'El campo fecha de vencimiento es requerido'
-						}
-					}
-				},
-				form_pago: {
-					validators: {
-						notEmpty: {
-							message: 'El campo forma de pago es requerido'
-						}
-					}
-				},
-				nro_orden_compra: {
-					validators: {
-						notEmpty: {
-							message: 'El campo número de orden de compra es requerido'
-						}
-					}
-				},
-				moneda: {
-					validators: {
-						notEmpty: {
-							message: 'El campo moneda es requerido'
-						}
-					}
-				},
-				tipo_cambio: {
-					validators: {
-						notEmpty: {
-							message: 'El campo tipo de cambio es requerido'
-						}
-					}
-				}
-			}
-    	});
-
-		//BOTON DE GUARDADO
-		if(document.getElementById("btn_save_sales") !== null){
-			const btn_save_sales = document.getElementById("btn_save_sales");
-			btn_save_sales.addEventListener("click" ,() => {
-				//sales.save();
-				$('#frm_sales').bootstrapValidator('validate');
-			});
-		}
-		//BOTON DE CANCELAR
-		if(document.getElementById("btn_cancel_sales") !== null){
-			const btn_cancel_sales = document.getElementById("btn_cancel_sales");
-			btn_cancel_sales.addEventListener("click" ,() => {
-				$('#frm_sales').bootstrapValidator("resetForm",true);
-			});
-		}
-		// =============================================================================== //
-
-		// VALIDACION FORMULARIO DE CLIENTES =============================================== //
-		$('#frm_cliente').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			excluded: [':disabled'],
-			fields: {
-				tipo_doc: {
-					validators: {
-						notEmpty: {
-							message: 'El campo tipo de documento es requerido'
-						}
-					}
-				},
-				nro_doc: {
-					validators: {
-						notEmpty: {
-							message: 'El campo número de documento es requerido'
-						}
-					}
-				},
-				nombre: {
-					validators: {
-						notEmpty: {
-							message: 'El campo nombre o razón social es requerido'
-						}
-					}
-				},
-				email: {
-					validators: {
-						notEmpty: {
-							message: 'El campo email es requerido'
-						}
-					}
-				},
-				tipo_envio_mail: {
-					validators: {
-						notEmpty: {
-							message: 'El campo tipo de correo es requerido'
-						}
-					}
-				},
-				direccion: {
-					validators: {
-						notEmpty: {
-							message: 'El campo dirección es requerido'
-						}
-					}
-				}
-			}
-    	}).on('success.form.bv', function(e) {
-			e.preventDefault();
-			customer.save("frm_cliente");
-		});
-
-		if(document.getElementById("btn_guardar_cliente") !== null){
-			const btn_guardar_cliente = document.getElementById("btn_guardar_cliente");
-			btn_guardar_cliente.addEventListener("click" ,() => {
-				//sales.save();
-				$('#frm_cliente').bootstrapValidator('validate');
-			});
-		}
-
-		if(document.getElementById("btn_cerrar_frm_cliente") !== null){
-			const btn_cerrar_frm_cliente = document.getElementById("btn_cerrar_frm_cliente");
-			btn_cerrar_frm_cliente.addEventListener("click" ,() => {
-				$("#modal_customer").modal("hide");
-				$('#frm_cliente').bootstrapValidator("resetForm",true);
-			});
-		}
-
-		// ================================================================================= //
-
-		// ========================== FILTROS DE BUSQUEDA ====================================//
-
-		if(document.getElementById("btn_buscar_cliente") !== null){
-			const btn_buscar_cliente = document.getElementById("btn_buscar_cliente");
-			btn_buscar_cliente.addEventListener("click" ,() => {
-				customer.buscarClientePorNombre();
-			});
-		}
-
-		//===================================================================================//
-		
-		if(document.getElementById("btn_add_items") !== null){
-			const btn_add_items = document.getElementById("btn_add_items");
-			btn_add_items.addEventListener("click" ,() => {
-				customer.addItems();
-			});
-		}
-
-	});
-</script>
+<script src="{{ asset('/lib/customer/customerModel.js') }}"></script>
+<script src="{{ asset('/lib/sales/salesModel.js') }}"></script>
+<script src="{{ asset('/lib/sales/salesController.js') }}"></script>
 @endsection

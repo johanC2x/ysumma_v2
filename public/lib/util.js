@@ -31,6 +31,12 @@ var util = function () {
                             Registro <b>no</b> insertado
                         </div>`;
                 break;
+            case 'insert_validate_sales':
+                msg = `<div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            Es necesario registrar items al recibo
+                        </div>`;
+                break;
         }
         if(msg !== ""){
             $("#"+obj_id).html(msg);
