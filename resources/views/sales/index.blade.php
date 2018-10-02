@@ -10,6 +10,13 @@
 			<div class="col-md-8">
 				<div class="panel panel-default">
 					<div class="panel-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a id="btn_venta_local" href="javascript:void(0);">Venta Local</a></li>
+							<li><a id="btn_exportacion" href="javascript:void(0);">Exportación</a></li>
+							<li><a id="btn_anticipos" href="javascript:void(0);">Anticipos</a></li>
+							<li><a id="btn_no_docimic" href="javascript:void(0);">No Domiciliados</a></li>
+						</ul>
+						<br/>
 						<form id="frm_sales" role="form">
 							<div class="row">
 								<div class="col-md-12">
@@ -188,7 +195,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<div class="col-md-6">
+									<div id="content_det" class="col-md-6">
 										<div class="form-group">
 											<label>Detracción:</label>
 											<label class="checkbox-inline">
@@ -208,6 +215,21 @@
 												<option value="2" data-monto="0.04">4.00</option>
 												<option value="3" data-monto="0.12">12.00</option>
 											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div id="content_add_doc" class="col-md-6">
+										<div class="form-group">
+											<label>Doc. Final:</label>
+											<label class="checkbox-inline">
+												<input id="ck_add_doc_in" name="ck_add_doc_in" type="checkbox" value="">Si
+											</label>
+											<label class="checkbox-inline">
+												<input id="ck_add_doc_out" name="ck_add_doc_out" type="checkbox" value="">No
+											</label>
 										</div>
 									</div>
 								</div>

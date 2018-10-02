@@ -1,5 +1,76 @@
 document.addEventListener("DOMContentLoaded",function(){
     
+    //VALIDACION DE TIPO DE EMISION DE DOCUMENTOS
+    if(document.getElementById("btn_venta_local") !== null){
+        const btn_venta_local = document.getElementById("btn_venta_local");
+        btn_venta_local.addEventListener("click" ,() => {
+            $("#btn_venta_local").parent().addClass("active");
+            $("#btn_exportacion").parent().removeClass("active");
+            $("#btn_anticipos").parent().removeClass("active");
+            $("#btn_no_docimic").parent().removeClass("active");
+            $("#content_det").show();
+        });
+    }
+
+    if(document.getElementById("btn_exportacion") !== null){
+        const btn_exportacion = document.getElementById("btn_exportacion");
+        btn_exportacion.addEventListener("click" ,() => {
+            $("#btn_exportacion").parent().addClass("active");
+            $("#btn_venta_local").parent().removeClass("active");
+            $("#btn_anticipos").parent().removeClass("active");
+            $("#btn_no_docimic").parent().removeClass("active");
+            if($("#content_det").is(":visible")){
+                $("#content_det").hide();
+            }
+        });
+    }
+
+    if(document.getElementById("btn_anticipos") !== null){
+        const btn_anticipos = document.getElementById("btn_anticipos");
+        btn_anticipos.addEventListener("click" ,() => {
+            $("#btn_anticipos").parent().addClass("active");
+            $("#btn_venta_local").parent().removeClass("active");
+            $("#btn_exportacion").parent().removeClass("active");
+            $("#btn_no_docimic").parent().removeClass("active");
+            $("#content_add_doc").show();
+        });
+    }
+
+    if(document.getElementById("btn_no_docimic") !== null){
+        const btn_no_docimic = document.getElementById("btn_no_docimic");
+        btn_no_docimic.addEventListener("click" ,() => {
+            $("#btn_no_docimic").parent().addClass("active");
+            $("#btn_anticipos").parent().removeClass("active");
+            $("#btn_venta_local").parent().removeClass("active");
+            $("#btn_exportacion").parent().removeClass("active");
+            if($("#content_det").is(":visible")){
+                $("#content_det").hide();
+            }
+        });
+    }
+
+    // VALIDACION DE DOC FINALES ====================================================== //
+    $("#content_add_doc").hide();
+
+    if($("#content_add_doc").is(":visible")){
+        document.getElementById("ck_add_doc_out").checked = true;
+        if(document.getElementById("ck_add_doc_out") !== null){
+            const ck_add_doc_out = document.getElementById("ck_add_doc_out");
+            ck_add_doc_out.addEventListener("click" ,() => {
+                document.getElementById("ck_add_doc_out").checked = true;
+                document.getElementById("ck_add_doc_in").checked = false;
+            });
+        }
+
+        if(document.getElementById("ck_add_doc_in") !== null){
+            const ck_add_doc_in = document.getElementById("ck_add_doc_in");
+            ck_add_doc_in.addEventListener("click" ,() => {
+                document.getElementById("ck_add_doc_in").checked = true;
+                document.getElementById("ck_add_doc_out").checked = false;
+            });
+        }
+    }
+
     // VALIDACION DE DETRACCION ====================================================== //
     
     document.getElementById("content_val_det").style.display = "none";
