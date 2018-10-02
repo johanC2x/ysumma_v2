@@ -204,9 +204,9 @@
 											<label>Valor de Detracción (%):</label>
 											<select id="val_detraccion" name="val_detraccion" class="form-control" >
 												<option value="">Seleccionar</option>
-												<option value="1">10.00</option>
-												<option value="2">4.00</option>
-												<option value="3">12.00</option>
+												<option value="1" data-monto="0.10">10.00</option>
+												<option value="2" data-monto="0.04">4.00</option>
+												<option value="3" data-monto="0.12">12.00</option>
 											</select>
 										</div>
 									</div>
@@ -248,6 +248,7 @@
 										<label>Tipo de Guia:</label>
 										<select class="form-control" id="tipo_guia" name="tipo_guia" >
 											<option value="" >Seleccionar</option>
+											<option value="1" >Guia de Prueba</option>
 										</select>
 									</div>
 								</div>
@@ -269,13 +270,15 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Total Igv:</label>
-									<input type="text" name="total_igv" id="total_igv" class="form-control">
+									<input type="text" name="total_igv" id="total_igv" class="form-control"
+											value="0" disabled="true"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Total Importe:</label>
-									<input type="text" name="total_importe" id="total_importe" class="form-control">
+									<input type="text" name="total_importe" id="total_importe" class="form-control"
+											value="0" disabled="true"/>
 								</div>
 							</div>
 						</div>

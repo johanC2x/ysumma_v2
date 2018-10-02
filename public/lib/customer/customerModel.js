@@ -81,6 +81,7 @@ var customer = function () {
 		$("#tbl_items tfoot").empty();
 		if(self.list_items.length > 0){
 			var total = 0;
+			var igv = 0;
 			for(var i = 0;i < self.list_items.length;i++){
 				let obj = self.list_items[i];
 				tbody += `<tr>
@@ -93,6 +94,7 @@ var customer = function () {
 							<td><center>`+ obj.item_import +`</center></td>
 						</tr>`;
 				total = total + parseFloat(obj.item_import);
+				igv = igv + parseFloat(obj.item_igv);
 			}
 			if(total !== 0){
 				tfooter = `<tr>
@@ -118,6 +120,9 @@ var customer = function () {
 							</tr>`;
 			}
 			$('#frm_add_item').bootstrapValidator("resetForm",true);
+			//SETEANDO VALORES TOTALES
+			document.getElementById("total_importe").value = total;
+			document.getElementById("total_igv").value = igv;
 		}else{
 			tbody = `<tr>
 						<td colspan="7">

@@ -23,6 +23,18 @@ document.addEventListener("DOMContentLoaded",function(){
         });
     }
 
+    if(document.getElementById("val_detraccion") !== null){
+        const val_detraccion = document.getElementById("val_detraccion");
+        val_detraccion.addEventListener("change" ,() => {
+            var detra_monto = $("#val_detraccion option:selected").attr("data-monto");
+            var total_importe = document.getElementById("total_importe").value;
+			var total_igv = document.getElementById("total_igv").value;
+
+            document.getElementById("total_importe").value = (total_importe * detra_monto) + total_importe;
+            document.getElementById("total_igv").value = (total_igv * detra_monto) + total_importe;
+        });
+    }
+
     // =============================================================================== //
 
     // VALIDACION FORMULARIO DE VENTAS =============================================== //
