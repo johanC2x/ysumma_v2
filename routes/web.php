@@ -24,3 +24,7 @@ Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/{customer_id}', 'CustomerController@findByName');
 Route::post('/customer', 'CustomerController@save');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

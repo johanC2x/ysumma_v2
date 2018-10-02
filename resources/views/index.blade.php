@@ -83,9 +83,12 @@
       				<div class="top_right_bar">
 				        <div class="user_admin dropdown"> 
 				          <a href="javascript:void(0);" data-toggle="dropdown">
+						  <!--
 				          	<img src="{{ asset('images/user.png') }}" />
-				          	<span class="user_adminname">John Doe</span> 
-				          	<b class="caret"></b> 
+							  -->
+				          	<span class="user_adminname">
+								{{ Auth::user()->name }} <b class="caret"></b> 
+							</span> 
 				          </a>
 				          	<ul class="dropdown-menu">
 				            	<div class="top_pointer"></div>
@@ -102,6 +105,14 @@
 				            		<a href="login.html"><i class="fa fa-power-off"></i> Logout
 				            		</a>
 				            	</li>
+								<li>
+									<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+										Cerrar Sesión
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+										{{ csrf_field() }}
+									</form>
+								</li>
 				          	</ul>
 				        </div>        
 					</div>
