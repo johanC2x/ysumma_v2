@@ -1,9 +1,9 @@
-var sales = function () {
+var sales = ( () => {
 
 	var self = {
 		resource : window.location.href,
 	};
-
+ 
 	self.init = () => {
 		
 	};
@@ -42,4 +42,4 @@ var sales = function () {
 	};
 
 	return self;
-}(jQuery);
+}) ();

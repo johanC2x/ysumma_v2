@@ -9,12 +9,19 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class SalesController extends Controller{
 
+    /*
+    use AuthenticatesUsers;
+    
+    protected $redirectTo = '/sales';
+
     public function __construct(){
-        
+        $this->middleware('guest')->except('logout');
     }
+    */
 
     public function index(){
         return view('sales.index');

@@ -43,37 +43,7 @@
 			    <div class="header_top_bar">
 			    	<a href="javascript:void(0);" class="menutoggle"> <i class="fa fa-bars"></i> </a>
 			    	<div class="top_left">
-				        <div class="top_left_menu">
-				          	<ul>
-					            <li> 
-					            	<a href="javascript:void(0);"><i class="fa fa-repeat"></i></a> 
-					            </li>
-				            	<li class="dropdown"> 
-					              	<a data-toggle="dropdown" href="javascript:void(0);"> 
-					              		<i class="fa fa-th-large"></i> 
-					              	</a>
-				        			<ul class="drop_down_task dropdown-menu" style="margin-top:39px">
-				        				<div class="top_left_pointer"></div>
-				        				<li>
-						                    <div class="checkbox">
-						                      <label>
-						                        <input type="checkbox" name="remember">Remember me 
-						                      </label>
-						                    </div>
-				                  		</li>
-				        				<li> 
-				        					<a href="help.html"><i class="fa fa-question-circle"></i> Help</a> 
-				        				</li>
-				        				<li> 
-				        					<a href="settings.html"><i class="fa fa-cog"></i> Setting </a>
-				        				</li>
-				        				<li> 
-				        					<a href="login.html"><i class="fa fa-power-off"></i> Logout</a> 
-				        				</li>
-				        		  	</ul>
-								</li>
-				          	</ul>
-						</div>
+				        
 					</div>
 					<!--
 					<a href="javascript:void(0);" class="add_user" data-toggle="modal" data-target="#myModal"> 
@@ -81,40 +51,36 @@
       				</a>
 					-->
       				<div class="top_right_bar">
-				        <div class="user_admin dropdown"> 
-				          <a href="javascript:void(0);" data-toggle="dropdown">
-						  <!--
-				          	<img src="{{ asset('images/user.png') }}" />
-							  -->
-				          	<span class="user_adminname">
-								{{ Auth::user()->name }} <b class="caret"></b> 
-							</span> 
-				          </a>
-				          	<ul class="dropdown-menu">
-				            	<div class="top_pointer"></div>
-				            	<li> 
-				            		<a href="profile.html"><i class="fa fa-user"></i> Profile</a> 
-				            	</li>
-				            	<li> 
-				            		<a href="help.html"><i class="fa fa-question-circle"></i> Help</a> 
-				            	</li>
-				            	<li> 
-				            		<a href="settings.html"><i class="fa fa-cog"></i> Setting </a>
-				            	</li>
-				            	<li> 
-				            		<a href="login.html"><i class="fa fa-power-off"></i> Logout
-				            		</a>
-				            	</li>
-								<li>
-									<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-										Cerrar Sesión
-									</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-										{{ csrf_field() }}
-									</form>
-								</li>
-				          	</ul>
-				        </div>        
+					  	@guest
+							
+						@else
+							<div class="user_admin dropdown"> 
+							<a href="javascript:void(0);" data-toggle="dropdown">
+							<!--
+								<img src="{{ asset('images/user.png') }}" />
+								-->
+								<span class="user_adminname">
+									{{ Auth::user()->name }} <b class="caret"></b> 
+								</span> 
+							</a>
+								<ul class="dropdown-menu">
+									<div class="top_pointer"></div>
+									<!--
+									<li> 
+										<a href="settings.html"><i class="fa fa-cog"></i> Setting </a>
+									</li>
+									-->
+									<li>
+										<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+											Cerrar Sesión
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+											{{ csrf_field() }}
+										</form>
+									</li>
+								</ul>
+							</div>  
+						@endguest      
 					</div>
 
 			    </div>
@@ -128,7 +94,7 @@
 				    <div class="left_nav_slidebar">
 				    	<ul>
 							<li class="left_nav_active theme_border">
-								<a href="javascript:void(0);">
+								<a href="/">
 									<i class="fa fa-home"></i> Inicio 
 									<span class="left_nav_pointer"></span> 
 									<span class="plus"><i class="fa fa-plus"></i></span> 
@@ -136,13 +102,13 @@
 				          	</li>
 								<li class="left_nav_active theme_border">
 									<a href="javascript:void(0);">
-										<i class="fa fa-home"></i> Emitir 
+										<i class="fa fa-file"></i> Emitir 
 										<span class="left_nav_pointer"></span> 
 										<span class="plus"><i class="fa fa-plus"></i></span> 
 									</a>
 									<ul class="opened" style="display:block">
 										<li> 
-											<a href="index.html"> <span>&nbsp;</span> 
+											<a href="/sales"> <span>&nbsp;</span> 
 												<i class="fa fa-circle theme_color"></i> 
 												<b class="theme_color">Factura</b> 
 											</a> 
@@ -153,20 +119,6 @@
 					</div>
 		    	</div>
 		    	<div class="contentpanel">
-		    		
-					<div class="pull-left breadcrumb_admin clear_both">
-			          	<div class="pull-left page_title theme_color">
-			            	<h1>Inicio</h1>
-			            	<h2 class="">Emitir Facturas</h2>
-			          	</div>
-		          		<div class="pull-right">
-		            		<ol class="breadcrumb">
-		              			<li><a href="#">Inicio</a></li>
-		              			<li class="active">Emitir Facturas</li>
-		            		</ol>
-		          		</div>
-		        	</div>
-
 		        	<!-- CONTENEDOR DE APLICACION -->
 		        		@yield('content')
 		        	<!-- / CONTENEDOR DE APLICACION -->

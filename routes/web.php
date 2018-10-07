@@ -11,9 +11,11 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('index');
 });
+*/
 
 //MODULO DE VENTAS
 Route::get('/sales', 'SalesController@index');
@@ -24,7 +26,8 @@ Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/{customer_id}', 'CustomerController@findByName');
 Route::post('/customer', 'CustomerController@save');
 
-
 Auth::routes();
 
+//RUTAS DE MAPEO
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');

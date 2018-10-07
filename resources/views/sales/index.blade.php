@@ -1,6 +1,17 @@
 @extends('index')
 
 @section('content')
+<div class="pull-left breadcrumb_admin clear_both">
+	<div class="pull-left page_title theme_color">
+		<h2 class="">Módulo de Emisión de Facturas</h2>
+	</div>
+	<div class="pull-right">
+		<ol class="breadcrumb">
+			<li><a href="/">Inicio</a></li>
+			<li class="active">Emitir Facturas</li>
+		</ol>
+	</div>
+</div>
 <div class="container">
 	<div class="row">
 		
