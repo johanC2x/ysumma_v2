@@ -127,6 +127,44 @@
 		    </div>
   		</div>
 
+		<!-- MODAL DE OPERACION EXITOSA -->
+		<div class="modal fade" id="modal_success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-body">
+					<br/>
+					<h4>
+						<center>
+							La operacion se realizó con éxito !!!
+						</center>
+					</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- MODAL DE ERROR -->
+		<div class="modal fade" id="modal_error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+				<div class="modal-body">
+					<br/>
+					<h4>
+						<center>
+							La operacion no se llego a procesar !!!
+						</center>
+					</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+				</div>
+				</div>
+			</div>
+		</div>
+
 		<script src="{{ asset('/js/jquery-2.1.0.js') }}"></script>
 		<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('/js/bootstrapValidator.min.js') }}"></script>

@@ -21,8 +21,9 @@ var sales = ( () => {
 					document.getElementById("frm_sales").reset();
 					$('#frm_sales').bootstrapValidator("resetForm",true);
 					$('#frm_add_item').bootstrapValidator("resetForm",true);
+					$("#modal_success").modal("show");
 				}else{
-					
+					$("#modal_error").modal("show");
 				}
 			}
 		});
