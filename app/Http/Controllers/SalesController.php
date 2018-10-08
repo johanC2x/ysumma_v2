@@ -47,6 +47,7 @@ class SalesController extends Controller{
             $ventas->descripcion_guia = $input["desc_guia"];
 
             //LLAMANDO API TAXTECH
+/*                    
             $data = array();
             $data["fec_emi"] = "2018-08-04";
             $data["hor_emi"] = "21:45:01";
@@ -83,7 +84,7 @@ class SalesController extends Controller{
             $url = "http://34.203.202.3:4254/taxtech";
             $request = $client->post($url,  ['body' => $data]);
             $response = $request->send();
-
+*/
             if($ventas->save()){
                 return array("success" => true);
             }else{

@@ -18,6 +18,7 @@ var sales = ( () => {
 			success:function(response){
 				if(response.success){
 					customer.list_items = [];
+					customer.makeTable();
 					document.getElementById("frm_sales").reset();
 					$('#frm_sales').bootstrapValidator("resetForm",true);
 					$('#frm_add_item').bootstrapValidator("resetForm",true);

@@ -197,9 +197,8 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label>Tipo de Cambio:</label>
-											<input type="number" name="tipo_cambio" 
-													id="tipo_cambio" 
-													class="form-control">
+											<input type="number" name="tipo_cambio" id="tipo_cambio" class="form-control"
+													value="0" min="0" step="0.01"/>
 										</div>
 									</div>
 								</div>
@@ -508,6 +507,7 @@
 						<select name="tipo_doc" id="tipo_doc" class="form-control">
 							<option value="">Seleccionar</option>
 							<option value="DNI">DNI</option>
+							<option value="DNI">RUC</option>
 							<option value="CE">Carnet de Extranjeria</option>
 						</select>
 					</div>
