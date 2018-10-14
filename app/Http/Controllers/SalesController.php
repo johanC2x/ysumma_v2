@@ -23,6 +23,7 @@ class SalesController extends Controller{
     }
     */
 
+    //MODULO DE EMISION DE FACTURAS
     public function index(){
         return view('sales.index');
     }
@@ -45,6 +46,7 @@ class SalesController extends Controller{
             $ventas->id_tipo_guia = $input["tipo_guia"];
             $ventas->nro_guia = $input["nro_guia"];
             $ventas->descripcion_guia = $input["desc_guia"];
+            $ventas->tipo_doc = "FAC";
 
             //LLAMANDO API TAXTECH
 /*                    

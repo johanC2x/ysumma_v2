@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if(document.getElementById("btn_pruebas_sales") !== null){
         const btn_pruebas_sales = document.getElementById("btn_pruebas_sales");
         btn_pruebas_sales.addEventListener("click" ,() => {
-            sales.saveTest();
+            boletas.saveTest();
         });
     }
 
@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded",function(){
             $("#btn_exportacion").parent().removeClass("active");
             $("#btn_anticipos").parent().removeClass("active");
             $("#btn_no_docimic").parent().removeClass("active");
-            $("#content_det").show();
+            if($("#content_add_doc").is(":visible")){
+                $("#content_add_doc").hide();
+            }
         });
     }
 
@@ -27,8 +29,8 @@ document.addEventListener("DOMContentLoaded",function(){
             $("#btn_venta_local").parent().removeClass("active");
             $("#btn_anticipos").parent().removeClass("active");
             $("#btn_no_docimic").parent().removeClass("active");
-            if($("#content_det").is(":visible")){
-                $("#content_det").hide();
+            if($("#content_add_doc").is(":visible")){
+                $("#content_add_doc").hide();
             }
         });
     }
@@ -51,8 +53,8 @@ document.addEventListener("DOMContentLoaded",function(){
             $("#btn_anticipos").parent().removeClass("active");
             $("#btn_venta_local").parent().removeClass("active");
             $("#btn_exportacion").parent().removeClass("active");
-            if($("#content_det").is(":visible")){
-                $("#content_det").hide();
+            if($("#content_add_doc").is(":visible")){
+                $("#content_add_doc").hide();
             }
         });
     }
@@ -77,41 +79,6 @@ document.addEventListener("DOMContentLoaded",function(){
                 document.getElementById("ck_add_doc_out").checked = false;
             });
         }
-    }
-
-    // VALIDACION DE DETRACCION ====================================================== //
-    
-    document.getElementById("content_val_det").style.display = "none";
-    document.getElementById("ck_det_out").checked = true;
-
-    if(document.getElementById("ck_det_out") !== null){
-        const ck_det_out = document.getElementById("ck_det_out");
-        ck_det_out.addEventListener("click" ,() => {
-            document.getElementById("ck_det_out").checked = true;
-            document.getElementById("ck_det_in").checked = false;
-            document.getElementById("content_val_det").style.display = "none";
-        });
-    }
-
-    if(document.getElementById("ck_det_in") !== null){
-        const ck_det_in = document.getElementById("ck_det_in");
-        ck_det_in.addEventListener("click" ,() => {
-            document.getElementById("ck_det_in").checked = true;
-            document.getElementById("ck_det_out").checked = false;
-            document.getElementById("content_val_det").style.display = "block";
-        });
-    }
-
-    if(document.getElementById("val_detraccion") !== null){
-        const val_detraccion = document.getElementById("val_detraccion");
-        val_detraccion.addEventListener("change" ,() => {
-            var detra_monto = $("#val_detraccion option:selected").attr("data-monto");
-            var total_importe = document.getElementById("total_importe").value;
-			var total_igv = document.getElementById("total_igv").value;
-
-            document.getElementById("total_importe").value = (total_importe * detra_monto) + total_importe;
-            document.getElementById("total_igv").value = (total_igv * detra_monto) + total_importe;
-        });
     }
 
     // =============================================================================== //
@@ -212,7 +179,7 @@ document.addEventListener("DOMContentLoaded",function(){
     }).on('success.form.bv', function(e) {
         e.preventDefault();
         if(customer.list_items.length > 0){
-            sales.save();
+            boletas.save();
         }else{
             util.setMessages("msg_sales_validate","insert_validate_sales");
         }
@@ -412,21 +379,21 @@ document.addEventListener("DOMContentLoaded",function(){
     if(document.getElementById("item_afec") !== null){
         const item_afec = document.getElementById("item_afec");
         item_afec.addEventListener("change" ,() => {
-            sales.addImp();
+            boletas.addImp();
         });
     }
 
     if(document.getElementById("item_price") !== null){
         const item_price = document.getElementById("item_price");
         item_price.addEventListener("change" ,() => {
-            sales.addImp();
+            boletas.addImp();
         });
     }
     
     if(document.getElementById("item_quantity") !== null){
         const item_quantity = document.getElementById("item_quantity");
         item_quantity.addEventListener("change" ,() => {
-            sales.addImp();
+            boletas.addImp();
         });
     }
 

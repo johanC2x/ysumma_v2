@@ -21,6 +21,13 @@ Route::get('/', function () {
 Route::get('/sales', 'SalesController@index');
 Route::post('/sales', 'SalesController@save');
 
+//MODULO DE BOLETAS
+Route::get('/boletas', 'BoletasController@index');
+Route::post('/boletas', 'BoletasController@save');
+
+//MODULO DE PRUEBAS
+Route::get('/sales/test', 'SalesController@api');
+
 //MODULO DE CLIENTES
 Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/{customer_id}', 'CustomerController@findByName');

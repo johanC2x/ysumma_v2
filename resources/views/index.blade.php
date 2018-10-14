@@ -113,6 +113,12 @@
 												<b class="theme_color">Factura</b> 
 											</a> 
 										</li>
+										<li>
+											<a href="/boletas"> <span>&nbsp;</span> 
+												<i class="fa fa-circle theme_color"></i> 
+												<b class="theme_color">Boleta</b> 
+											</a>
+										</li>
 									</ul>
 								</li>
 				        </ul>

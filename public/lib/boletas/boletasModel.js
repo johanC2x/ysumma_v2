@@ -1,4 +1,4 @@
-var sales = ( () => {
+var boletas = ( () => {
 
 	var self = {
 		resource : window.location.href,
