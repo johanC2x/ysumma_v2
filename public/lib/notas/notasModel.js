@@ -1,11 +1,24 @@
-var sales = function () {
+var notas = ( () => {
 
 	var self = {
 		resource : window.location.href,
 	};
-
+ 
 	self.init = () => {
 		
+	};
+
+	self.saveTest = () => {
+		var token = $("#_token").val();
+		$.ajax({
+			type:"GET",
+			data:$("#frm_sales").serialize(),
+			url:self.resource + '/test',
+			headers:{'X-CSRF-TOKEN' : token},
+			success:function(response){
+				console.log(response);
+			}
+		});
 	};
 
 	self.save = () => {
@@ -18,11 +31,13 @@ var sales = function () {
 			success:function(response){
 				if(response.success){
 					customer.list_items = [];
+					customer.makeTable();
 					document.getElementById("frm_sales").reset();
 					$('#frm_sales').bootstrapValidator("resetForm",true);
 					$('#frm_add_item').bootstrapValidator("resetForm",true);
+					$("#modal_success").modal("show");
 				}else{
-					
+					$("#modal_error").modal("show");
 				}
 			}
 		});
@@ -42,4 +57,4 @@ var sales = function () {
 	};
 
 	return self;
-}(jQuery);
+}) ();

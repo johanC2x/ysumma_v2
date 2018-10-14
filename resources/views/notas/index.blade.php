@@ -1,22 +1,22 @@
 @extends('index')
 
 @section('content')
-
+    
     <div class="pull-left breadcrumb_admin clear_both">
         <div class="pull-left page_title theme_color">
-            <h2 class="">Módulo de Emisión de Boletas</h2>
+            <h2 class="">Módulo de Notas de Crédito</h2>
         </div>
         <div class="pull-right">
             <ol class="breadcrumb">
                 <li><a href="/">Inicio</a></li>
-                <li class="active">Emitir Boletas</li>
+                <li class="active">Emitir Notas de Credito</li>
             </ol>
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            
+
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -47,6 +47,7 @@
                                                         class="form-control required" data-name="Número de Serie">
                                                     <option value="">Seleccionar</option>
                                                     <option value="B001">B001</option>
+                                                    <option value="F001">F001</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -207,19 +208,56 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div id="content_add_doc" class="col-md-6">
+                                        <div class="col-md-6">
+                                            <br/>
                                             <div class="form-group">
-                                                <label>Doc. Final:</label>
+                                                <label>Asociado:</label>
                                                 <label class="checkbox-inline">
-                                                    <input id="ck_add_doc_in" name="ck_add_doc_in" type="checkbox" value="">Si
+                                                    <input id="ck_add_doc_in" name="ck_add_doc_in" type="checkbox" value="">Factura
                                                 </label>
                                                 <label class="checkbox-inline">
-                                                    <input id="ck_add_doc_out" name="ck_add_doc_out" type="checkbox" value="">No
+                                                    <input id="ck_add_doc_out" name="ck_add_doc_out" type="checkbox" value="">Boleta
                                                 </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nro. Documento:</label>
+                                                <input type="text" name="nro_doc_rec" id="nro_doc_rec" class="form-control"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <label>Motivo:</label>
+                                            <select id="tipomotivo" name="tipomotivo" class="form-control">
+                                                <option selected="" value="">Seleccionar</option>
+                                                <option value="01">Anulación de la operación</option>
+                                                <option value="02">Anulación por error en el RUC</option>
+                                                <option value="03">Corrección por error en la descripción</option>
+                                                <option value="04">Descuento global</option>
+                                                <option value="05">Descuento por ítem</option>
+                                                <option value="06">Devolución Total</option>
+                                                <option value="07">Devolución por ítem</option>
+                                                <option value="08">Bonificación</option>
+                                                <option value="09">Disminución en el valor</option>
+                                                <option value="10">Otros Conceptos</option>
+                                                <option value="11">Ajustes de operaciones de exportación</option>
+                                                <option value="12">Ajustes afectos al IVAP</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Sustento:</label>
+                                                <input type="text" name="sustento" id="sustento" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-3">
@@ -463,9 +501,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- MODAL DE CLIENTE -->
+        <!-- MODAL DE CLIENTE -->
     <!-- Modal -->
     <div class="modal fade" id="modal_customer" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
@@ -546,9 +583,11 @@
         </div>
     </div>
 
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="{{ asset('/lib/customer/customerModel.js') }}"></script>
-    <script src="{{ asset('/lib/boletas/boletasModel.js') }}"></script>
-    <script src="{{ asset('/lib/boletas/boletasController.js') }}"></script>
+    <script src="{{ asset('/lib/notas/notasModel.js') }}"></script>
+    <script src="{{ asset('/lib/notas/notasController.js') }}"></script>
 
 @endsection

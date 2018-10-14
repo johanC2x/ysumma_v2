@@ -25,6 +25,10 @@ Route::post('/sales', 'SalesController@save');
 Route::get('/boletas', 'BoletasController@index');
 Route::post('/boletas', 'BoletasController@save');
 
+//MODULO DE NOTAS DE CREDITO
+Route::get('/nota-credito', 'NotaCreditoController@index');
+Route::post('/nota-credito', 'NotaCreditoController@save');
+
 //MODULO DE PRUEBAS
 Route::get('/sales/test', 'SalesController@api');
 

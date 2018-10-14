@@ -110,13 +110,19 @@
 										<li> 
 											<a href="/sales"> <span>&nbsp;</span> 
 												<i class="fa fa-circle theme_color"></i> 
-												<b class="theme_color">Factura</b> 
-											</a> 
+												<b class="sales">Factura</b> 
+											</a>
 										</li>
 										<li>
 											<a href="/boletas"> <span>&nbsp;</span> 
 												<i class="fa fa-circle theme_color"></i> 
-												<b class="theme_color">Boleta</b> 
+												<b class="boletas">Boleta</b> 
+											</a>
+										</li>
+										<li>
+											<a href="/nota-credito"> <span>&nbsp;</span> 
+												<i class="fa fa-circle theme_color"></i> 
+												<b class="nota-credito">Nota de Crédito</b> 
 											</a>
 										</li>
 									</ul>

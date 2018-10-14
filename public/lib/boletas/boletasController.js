@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    //VALIDANDO UBICACION DE MODULO
+    if(document.getElementsByClassName("boletas") !== null){
+        var item = document.getElementsByClassName("boletas");
+        item[0].classList.add("theme_color");
+    }
+
     //VALIDACION DE PRUEBAS
     if(document.getElementById("btn_pruebas_sales") !== null){
         const btn_pruebas_sales = document.getElementById("btn_pruebas_sales");
