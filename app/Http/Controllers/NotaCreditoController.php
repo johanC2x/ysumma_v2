@@ -23,9 +23,9 @@ class NotaCreditoController extends Controller{
     public function getNroDoc($nro_doc_nota = null,$tipo_doc = null){
         $response = null;
         if($tipo_doc === "FAC"){
-            $response = Ventas::where('id', (int)$nro_doc_nota);
+            $response = Ventas::where('id',$nro_doc_nota)->first();
         }else if($tipo_doc === "BOL"){
-            $response = Boletas::where('id', (int)$nro_doc_nota);
+            $response = Boletas::where('id',$nro_doc_nota)->first();
         }
         if(!empty($response)){
             return array("success" => true, "data" => $response);
