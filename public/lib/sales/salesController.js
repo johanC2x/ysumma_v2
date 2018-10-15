@@ -1,5 +1,57 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    //SETEANDO VALOR DE FECHAS DE EMISION ===========================================
+    if(document.getElementById("fec_emision") !== null){
+        document.getElementById("fec_emision").value = util.fec_emision;
+    }
+    //==============================================================================
+
+    //SETEANDO VALOR DE FECHAS DE VENCIMIENTO =======================================
+    if(document.getElementById("con_pago") !== null){
+        const con_pago = document.getElementById("con_pago");
+        con_pago.addEventListener("change" ,() => {
+            if(con_pago.value !== ""){
+                switch(con_pago.value){
+                    case '001'://SETEANDO AL CONTADO
+                        document.getElementById("fec_vencimiento").value = util.time;
+                        break;
+                    case '000'://NO ASIGNADO
+                        document.getElementById("fec_vencimiento").value = util.time;
+                        break;
+                    case '002'://CREDITO A 7 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(7,"days");
+                        break;
+                    case '003'://CREDITO A 15 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(15,"days");
+                        break;
+                    case '008'://CREDITO A 20 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(20,"days");
+                        break;
+                    case '010'://CREDITO A 21 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(21,"days");
+                        break;
+                    case '011'://CREDITO A 25 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(25,"days");
+                        break;
+                    case '004'://CREDITO A 30 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(30,"days");
+                        break;
+                    case '005'://CREDITO A 60 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(60,"days");
+                        break;
+                    case '006'://CREDITO A 90 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(90,"days");
+                        break;
+                    case '007'://CREDITO A 120 DIAS
+                        document.getElementById("fec_vencimiento").value = util.addTime(120,"days");
+                        break;
+                }
+            }
+        });
+    }
+    //===============================================================================
+
+
     //VALIDANDO UBICACION DE MODULO
     if(document.getElementsByClassName("sales") !== null){
         var item = document.getElementsByClassName("sales");

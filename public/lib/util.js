@@ -1,6 +1,24 @@
 var util = function () {
 
-	var self = {};
+	var self = {
+        fec_emision : moment().format('YYYY-MM-DD'),
+        time : moment().format('YYYY-MM-DD'),
+    };
+
+    self.addTime = (number,type) => {
+        switch(type){
+            case 'days':
+                self.time = moment().add(number, 'days').format('YYYY-MM-DD');
+                break;
+            case 'months':
+                self.time = moment().add(number, 'months').format('YYYY-MM-DD');
+                break;
+            case 'years':
+                self.time = moment().add(number, 'years').format('YYYY-MM-DD');
+                break;
+        }
+        return self.time;
+    };
 
 	self.validateForm = (form_id) => {
         var errors = [];
