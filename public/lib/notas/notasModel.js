@@ -8,6 +8,19 @@ var notas = ( () => {
 		
 	};
 
+	self.obtenerNumeroRecibo = () => {
+		var nro_doc = document.getElementById("nro_doc_rec").value;
+		var tipo_doc = (document.getElementById("ck_add_doc_in").checked === true) ? "FAC" : "BOL";
+		$.ajax({
+			type:"GET",
+			data:{},
+			url:self.resource + '/' + nro_doc + "/" + tipo_doc,
+			success:function(response){
+				console.log(response);
+			}
+		});
+	};
+
 	self.saveTest = () => {
 		var token = $("#_token").val();
 		$.ajax({

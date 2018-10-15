@@ -28,6 +28,7 @@ Route::post('/boletas', 'BoletasController@save');
 //MODULO DE NOTAS DE CREDITO
 Route::get('/nota-credito', 'NotaCreditoController@index');
 Route::post('/nota-credito', 'NotaCreditoController@save');
+Route::get('/nota-credito/{nro_doc_nota}/{tipo_doc}', 'NotaCreditoController@getNroDoc');
 
 //MODULO DE PRUEBAS
 Route::get('/sales/test', 'SalesController@api');

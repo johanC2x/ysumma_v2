@@ -1,5 +1,36 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    //SETEANDO VALOR POR FACTURA
+    document.getElementById("ck_add_doc_in").checked = true;
+
+    //VALIDANDO TIPO DE EMISION ======================================================
+    if(document.getElementById("ck_add_doc_in") !== null){
+        const ck_add_doc_in = document.getElementById("ck_add_doc_in");
+        ck_add_doc_in.addEventListener("click" ,() => {
+            document.getElementById("ck_add_doc_in").checked = true;
+            document.getElementById("ck_add_doc_out").checked = false;
+        });
+    }
+
+    if(document.getElementById("ck_add_doc_out") !== null){
+        const ck_add_doc_out = document.getElementById("ck_add_doc_out");
+        ck_add_doc_out.addEventListener("click" ,() => {
+            document.getElementById("ck_add_doc_in").checked = false;
+            document.getElementById("ck_add_doc_out").checked = true;
+        });
+    }
+    //================================================================================
+
+    //OBTENIENDO TIPO DE DOCUMENTO POR NUMERO =======================================
+    if(document.getElementById("nro_doc_rec") !== null){
+        const nro_doc_rec = document.getElementById("nro_doc_rec");
+        nro_doc_rec.addEventListener("change" ,() => {
+            notas.obtenerNumeroRecibo();
+        });
+    }
+
+    //===============================================================================
+
     //VALIDANDO UBICACION DE MODULO
     if(document.getElementsByClassName("nota-credito") !== null){
         var item = document.getElementsByClassName("nota-credito");

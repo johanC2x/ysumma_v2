@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Ventas;
+use App\Boletas;
 use Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -22,8 +22,9 @@ class BoletasController extends Controller{
     public function save(Request $request){
         $input = (!empty($request->input())) ? $request->input() : false;
         if($input){
-            $ventas = new Ventas;
+            $ventas = new Boletas;
             $ventas->nro_doc = $input["nro_orden_compra"];
+            $ventas->nro_ord_com = $input["nro_orden_compra"];
             $ventas->serie = $input["nro_serie"];
             $ventas->id_cond_pago = $input["con_pago"];
             $ventas->fec_emi = $input["fec_emision"];
