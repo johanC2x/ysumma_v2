@@ -37,18 +37,23 @@ class CustomerController extends Controller{
     public function save(Request $request){
         $input = (!empty($request->input())) ? $request->input() : false;
         if($input){
-            $clientes = new Clientes;
-            $clientes->nombres_completos = $request["nombre"];
-            $clientes->nro_doc = $request["nro_doc"];
-            $clientes->tipo_doc = $request["tipo_doc"];
-            $clientes->direccion = $request["direccion"];
-            $clientes->email = $request["email"];
-            $clientes->tipo_email = $request["tipo_envio_mail"];
-            $clientes->descripcion = $request["comentario"];
-            if($clientes->save()){
-                return array("success" => true);
+            $data = Clientes::where('nro_doc', $request["nro_doc"])->first();
+            if(empty($data)){
+                $clientes = new Clientes;
+                $clientes->nombres_completos = $request["nombre"];
+                $clientes->nro_doc = $request["nro_doc"];
+                $clientes->tipo_doc = $request["tipo_doc"];
+                $clientes->direccion = $request["direccion"];
+                $clientes->email = $request["email"];
+                $clientes->tipo_email = $request["tipo_envio_mail"];
+                $clientes->descripcion = $request["comentario"];
+                if($clientes->save()){
+                    return array("success" => true);
+                }else{
+                    return array("success" => false);
+                }
             }else{
-                return array("success" => false);
+                return array("success" => false,"msg" => "El usuario ingresado actualmente existe");
             }
         }else{
             return array("success" => false);

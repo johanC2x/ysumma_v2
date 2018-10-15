@@ -19,7 +19,10 @@ var customer = function () {
 			success:function(response){
 				if(response.success){
 					$('#frm_cliente').bootstrapValidator("resetForm",true);
+					document.getElementById("frm_cliente").reset();
 					util.setMessages("msg_customer","insert_success");
+				}else if(response.hasOwnProperty("msg")){
+					util.openModalMsg(response.msg);
 				}else{
 					util.setMessages("msg_customer","insert_fail");
 				}
