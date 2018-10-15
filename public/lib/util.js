@@ -43,5 +43,10 @@ var util = function () {
         }
     };
 
+    self.openModalMsg = (msg_modal) => {
+        document.getElementById("mensaje_modal").innerHTML = msg_modal;
+		$("#modal_msg").modal("show");
+    };
+
 	return self;
 }(jQuery);

@@ -17,8 +17,7 @@ var notas = ( () => {
 			url:self.resource + '/' + nro_doc + "/" + tipo_doc,
 			success:function(response){
 				if(!response.success){
-					document.getElementById("mensaje_modal").innerHTML = "El número de documento ingresado no existe";
-					$("#modal_msg").modal("show");
+					util.openModalMsg("El número de documento ingresado no existe");
 				}
 			}
 		});

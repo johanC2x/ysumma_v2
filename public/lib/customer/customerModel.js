@@ -42,6 +42,8 @@ var customer = function () {
 						$("#tipo_doc").val(data.tipo_doc);
 						$("#nro_doc").val(data.nro_doc);
 						$("#direccion").val(data.direccion);
+					}else{
+						util.openModalMsg("El cliente ingresado no existe");
 					}
 				}
 			});	
