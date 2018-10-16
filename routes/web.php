@@ -30,6 +30,10 @@ Route::get('/nota-credito', 'NotaCreditoController@index');
 Route::post('/nota-credito', 'NotaCreditoController@save');
 Route::get('/nota-credito/{nro_doc_nota}/{tipo_doc}', 'NotaCreditoController@getNroDoc');
 
+//MODULO DE NOTAS DE DEBITO
+Route::get('/nota-debito', 'NotaDebitoController@index');
+Route::post('/nota-debito', 'NotaDebitoController@save');
+
 //MODULO DE PRUEBAS
 Route::get('/sales/test', 'SalesController@api');
 

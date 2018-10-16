@@ -125,6 +125,12 @@
 												<b class="nota-credito">Nota de Crédito</b> 
 											</a>
 										</li>
+										<li>
+											<a href="/nota-debito"> <span>&nbsp;</span> 
+												<i class="fa fa-circle theme_color"></i> 
+												<b class="nota-debito">Nota de Débito</b> 
+											</a>
+										</li>
 									</ul>
 								</li>
 				        </ul>
