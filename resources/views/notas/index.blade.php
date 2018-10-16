@@ -46,8 +46,8 @@
                                                 <select id="nro_serie" name="nro_serie" 
                                                         class="form-control required" data-name="Número de Serie">
                                                     <option value="">Seleccionar</option>
-                                                    <option value="B001">B001</option>
-                                                    <option value="F001">F001</option>
+                                                    <option value="BC001">BC001</option>
+                                                    <option value="FC001">FC001</option>
                                                 </select>
                                             </div>
                                         </div>
