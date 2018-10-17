@@ -45,6 +45,11 @@ var notas = ( () => {
 			headers:{'X-CSRF-TOKEN' : token},
 			success:function(response){
 				if(response.success){
+					/*
+					util.callRest({},"POST",(response) => { 
+						console.log(response); 
+					});
+					*/
 					customer.list_items = [];
 					customer.makeTable();
 					document.getElementById("frm_sales").reset();
