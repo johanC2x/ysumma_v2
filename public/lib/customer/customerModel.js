@@ -45,6 +45,7 @@ var customer = function () {
 						$("#tipo_doc").val(data.tipo_doc);
 						$("#nro_doc").val(data.nro_doc);
 						$("#direccion").val(data.direccion);
+						$("#email").val(data.email);
 					}else{
 						util.openModalMsg("El cliente ingresado no existe");
 					}

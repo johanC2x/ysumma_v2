@@ -3,7 +3,7 @@ var util = function () {
 	var self = {
         fec_emision : moment().format('YYYY-MM-DD'),
         time : moment().format('YYYY-MM-DD'),
-        api_url : "http://localhost:4254/taxtech"
+        api_url : "http://34.203.202.3:4254/taxtech"
     };
 
     self.addTime = (number,type) => {

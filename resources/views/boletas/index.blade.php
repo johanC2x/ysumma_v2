@@ -60,6 +60,7 @@
                                                 <input type="text" name="customer_id" id="customer_id" 
                                                         class="form-control">
                                                 <input type="hidden" name="cliente_id" id="cliente_id"/>
+                                                <input type="hidden" name="email" id="email"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -101,6 +102,7 @@
                                                         class="form-control" disabled="true">
                                                         <option value="">Seleccionar</option>
                                                         <option value="DNI">DNI</option>
+                                                        <option value="RUC">RUC</option>
                                                         <option value="CE">Carnet de Extranjeria</option>
                                                 </select>
                                             </div>

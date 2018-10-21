@@ -99,6 +99,7 @@
 													class="form-control" disabled="true">
 													<option value="">Seleccionar</option>
 													<option value="DNI">DNI</option>
+													<option value="RUC">RUC</option>
 													<option value="CE">Carnet de Extranjeria</option>
 											</select>
 										</div>
