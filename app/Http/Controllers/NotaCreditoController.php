@@ -15,6 +15,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class NotaCreditoController extends Controller{
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //MODULO DE EMISION DE BOLETAS
     public function index(){
         return view('notas.index');

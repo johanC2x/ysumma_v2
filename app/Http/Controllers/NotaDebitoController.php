@@ -15,6 +15,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class NotaDebitoController extends Controller{
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //MODULO DE EMISION DE NOTAS DE DEBITO
     public function index(){
         return view('debito.index');

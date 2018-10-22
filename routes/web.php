@@ -24,6 +24,7 @@ Route::post('/sales', 'SalesController@save');
 //MODULO DE BOLETAS
 Route::get('/boletas', 'BoletasController@index');
 Route::post('/boletas', 'BoletasController@save');
+Route::get('/boletas/{id}/{num_cpe}', 'BoletasController@update');
 
 //MODULO DE NOTAS DE CREDITO
 Route::get('/nota-credito', 'NotaCreditoController@index');

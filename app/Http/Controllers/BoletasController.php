@@ -13,6 +13,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class BoletasController extends Controller{
     
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     //MODULO DE EMISION DE BOLETAS
     public function index(){
         return view('boletas.index');
@@ -38,6 +42,20 @@ class BoletasController extends Controller{
             $ventas->nro_guia = $input["nro_guia"];
             $ventas->descripcion_guia = $input["desc_guia"];
             $ventas->tipo_doc = "BOL";
+            if($ventas->save()){
+                return array("success" => true,"data" => $ventas);
+            }else{
+                return array("success" => false);
+            }
+        }else{
+            return array("success" => false);
+        }
+    }
+
+    public function update($id,$num_cpe){
+        if(!empty($num_cpe)){
+            $ventas = Boletas::find($id);
+            $ventas->num_cpe_tax = $num_cpe;
             if($ventas->save()){
                 return array("success" => true);
             }else{

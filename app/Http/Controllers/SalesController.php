@@ -13,15 +13,9 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class SalesController extends Controller{
 
-    /*
-    use AuthenticatesUsers;
-    
-    protected $redirectTo = '/sales';
-
     public function __construct(){
-        $this->middleware('guest')->except('logout');
+        $this->middleware('auth');
     }
-    */
 
     //MODULO DE EMISION DE FACTURAS
     public function index(){
