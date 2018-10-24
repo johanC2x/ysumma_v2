@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded",function(){
     }
     //==============================================================================
 
+    if(document.getElementById("btn_download") !== null){
+        const btn_download = document.getElementById("btn_download");
+        btn_download.addEventListener("click" ,() => {
+            boletas.obtenerDocumento();
+        });
+    }
+
     //SETEANDO VALOR DE FECHAS DE VENCIMIENTO =======================================
     if(document.getElementById("con_pago") !== null){
         const con_pago = document.getElementById("con_pago");

@@ -43,6 +43,9 @@ Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/{customer_id}', 'CustomerController@findByName');
 Route::post('/customer', 'CustomerController@save');
 
+//MODULO DE EMISION DE RECIBOS
+Route::get('/emite', 'EmiteController@emite');
+
 Auth::routes();
 
 //RUTAS DE MAPEO

@@ -3,7 +3,11 @@ var util = function () {
 	var self = {
         fec_emision : moment().format('YYYY-MM-DD'),
         time : moment().format('YYYY-MM-DD'),
-        api_url : "http://34.203.202.3:4254/taxtech"
+        api_url : "http://34.203.202.3:4254/taxtech",
+        app : {
+            entidad_ruc : '20602919057',
+            entidad_nombre : 'YMPERIUM SUMMA S.A.C.'
+        }
     };
 
     self.addTime = (number,type) => {

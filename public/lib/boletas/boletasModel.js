@@ -2,7 +2,12 @@ var boletas = ( () => {
 
 	var self = {
 		resource : window.location.href,
-		current : {}
+		current : {},
+		document : {
+			oTipCpe : '03',
+			oSerCpe : '001',
+			oNroCpe : '01001023'
+		}
 	};
  
 	self.init = () => {
@@ -33,7 +38,6 @@ var boletas = ( () => {
 				if(response.success){
 					self.current = response.data;
 					var request = self.makeData("03");
-					console.log(request);
 					util.callRest(request,"POST",(response) => { 
 						console.log(response);
 						if(response.success && response.data.hasOwnProperty("callProcessOnlineResult")){
@@ -44,20 +48,13 @@ var boletas = ( () => {
 							var num_cpe = response.data.callProcessOnlineResult.NUM_CPE;
 							self.update(num_cpe,(res_update) => {
 								if(res_update.success){
+									self.document.oNroCpe = num_cpe;
 									customer.list_items = [];
 									customer.makeTable();
 									document.getElementById("frm_sales").reset();
 									$('#frm_sales').bootstrapValidator("resetForm",true);
 									$('#frm_add_item').bootstrapValidator("resetForm",true);
-									$("#modal_success").modal("show");
-									/*
-									var link = document.createElement('a');
-									link.href = 'http://facturaenuna.pe/DEMO/Ope/ObtenerDocumento?id='+num_cpe+'&amp;tipo=20101914837-03-B001-01001013.pdf';
-									link.target = '_blank';
-									link.download = "Boleta_"+num_cpe+".pdf";
-									document.body.appendChild(link);
-									link.click();
-									*/
+									$("#modal_success_boleta").modal("show");
 								}else{
 									$("#modal_error").modal("show");
 								}
@@ -74,7 +71,6 @@ var boletas = ( () => {
 	};
 
 	self.update = (num_cpe_tax,callback) => {
-		console.log(self.resource + "/" + self.current.id);
 		$.ajax({
 			type:"GET",
 			data:{},
@@ -83,6 +79,16 @@ var boletas = ( () => {
 				callback(response);
 			}
 		});
+	};
+
+	self.obtenerDocumento = () => {
+		var url = window.origin;
+		var link = document.createElement('a');
+        link.href = url + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+self.document.oNroCpe;
+        link.target = '_blank';
+        link.download = "Boleta.pdf";
+        document.body.appendChild(link);
+        link.click();
 	};
 
 	self.makeData = (tipo_doc_emi) => {
@@ -100,19 +106,19 @@ var boletas = ( () => {
 					tipo_doc = 4;
 					break;
 			};
-		}	
+		}
 		request.fec_emi = jQuery('input[name="fec_emision"]').val(); 
 		request.hor_emi = moment().format('hh:mm:ss');
 		request.cod_tip_ope = "0101";
 		request.serie = $("#nro_serie").val();
-		request.correlativo = "01001013";
+		request.correlativo = "01001023";
 		request.moneda = $("#moneda").val();
 		request.cod_tip_otr_doc_ref = tipo_doc_emi;
 		request.tip_doc_rct = tipo_doc;
 		request.nro_doc_rct = jQuery('input[name="nro_doc"]').val(); 
 		request.dir_des_rct = jQuery('input[name="direccion"]').val(); 
-		request.nro_doc = "20602919057";
-		request.nom_emi = "YMPERIUM SUMMA S.A.C.";
+		request.nro_doc = util.app.entidad_ruc;
+		request.nom_emi = util.app.entidad_nombre;
 		request.nom_rct = jQuery('input[name="customer_name"]').val();
 		request.mnt_tot_imp = parseFloat($("#total_importe").val()).toFixed(2);
 		request.mnt_tot_grv = "00.00";
