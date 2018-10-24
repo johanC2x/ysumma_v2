@@ -5,9 +5,10 @@ var boletas = ( () => {
 		current : {},
 		document : {
 			oTipCpe : '03',
-			oSerCpe : '001',
-			oNroCpe : '01001023'
-		}
+			oSerCpe : 'B001',
+			oNroCpe : '01001028'
+		},
+		url : ''
 	};
  
 	self.init = () => {
@@ -48,7 +49,7 @@ var boletas = ( () => {
 							var num_cpe = response.data.callProcessOnlineResult.NUM_CPE;
 							self.update(num_cpe,(res_update) => {
 								if(res_update.success){
-									self.document.oNroCpe = num_cpe;
+									//self.document.oNroCpe = num_cpe;
 									customer.list_items = [];
 									customer.makeTable();
 									document.getElementById("frm_sales").reset();
@@ -82,11 +83,11 @@ var boletas = ( () => {
 	};
 
 	self.obtenerDocumento = () => {
-		var url = window.origin;
+		self.url = window.origin + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+self.document.oNroCpe;
 		var link = document.createElement('a');
-        link.href = url + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+self.document.oNroCpe;
+        link.href = self.url;
         link.target = '_blank';
-        link.download = "Boleta.pdf";
+        //link.download = "Boleta.pdf";
         document.body.appendChild(link);
         link.click();
 	};
@@ -111,7 +112,7 @@ var boletas = ( () => {
 		request.hor_emi = moment().format('hh:mm:ss');
 		request.cod_tip_ope = "0101";
 		request.serie = $("#nro_serie").val();
-		request.correlativo = "01001023";
+		request.correlativo = "01001028";
 		request.moneda = $("#moneda").val();
 		request.cod_tip_otr_doc_ref = tipo_doc_emi;
 		request.tip_doc_rct = tipo_doc;

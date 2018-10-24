@@ -15,6 +15,9 @@
     </div>
 
     <div class="container">
+        <a href="http://localhost:8000/emite?oNroCpe=01001004&oSerCpe=B001&oTipCpe=03" target="_blank" >
+            VER PDF
+        </a>
         <div class="row">
             
         </div>
