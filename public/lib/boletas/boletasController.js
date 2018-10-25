@@ -245,7 +245,13 @@ document.addEventListener("DOMContentLoaded",function(){
     }).on('success.form.bv', function(e) {
         e.preventDefault();
         if(customer.list_items.length > 0){
-            boletas.save();
+            $.blockUI({
+                fadeIn: 1000, 
+                timeout:   2000, 
+                onBlock: function() { 
+                    boletas.save();
+                }
+            });
         }else{
             util.setMessages("msg_sales_validate","insert_validate_sales");
         }
