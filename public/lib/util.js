@@ -1,6 +1,7 @@
 var util = function () {
 
 	var self = {
+        url : window.location.origin,
         fec_emision : moment().format('YYYY-MM-DD'),
         time : moment().format('YYYY-MM-DD'),
         api_url : "http://34.203.202.3:4254/taxtech",

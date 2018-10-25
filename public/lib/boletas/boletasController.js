@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    boletas.init();
+
     //SETEANDO VALOR DE FECHAS DE EMISION ===========================================
     if(document.getElementById("fec_emision") !== null){
         document.getElementById("fec_emision").value = util.fec_emision;

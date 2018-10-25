@@ -15,9 +15,6 @@
     </div>
 
     <div class="container">
-        <a href="http://localhost:8000/emite?oNroCpe=01001004&oSerCpe=B001&oTipCpe=03" target="_blank" >
-            VER PDF
-        </a>
         <div class="row">
             
         </div>
@@ -64,6 +61,7 @@
                                                         class="form-control">
                                                 <input type="hidden" name="cliente_id" id="cliente_id"/>
                                                 <input type="hidden" name="email" id="email"/>
+                                                <input type="hidden" name="correlativo" id="correlativo"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1">

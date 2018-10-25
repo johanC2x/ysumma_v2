@@ -45,6 +45,7 @@ Route::post('/customer', 'CustomerController@save');
 
 //MODULO DE EMISION DE RECIBOS
 Route::get('/emite', 'EmiteController@emite');
+Route::get('/emite/correlativo/{tipo_doc}', 'EmiteController@obtenerCorrelativo');
 
 Auth::routes();
 

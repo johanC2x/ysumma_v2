@@ -12,7 +12,22 @@ var boletas = ( () => {
 	};
  
 	self.init = () => {
-		
+		self.obtenerCorrelativo(true);
+	};
+
+	self.obtenerCorrelativo = (isNew) => {
+		$.ajax({
+			type:"GET",
+			data:{},
+			url: util.url + '/emite/correlativo/BOL',
+			success:function(response){
+				if(response.success){
+					let data = response.data;
+					self.document.oNroCpe = (parseInt(data.correlativo) + 1).toString().padStart(8,"0");
+					$("#correlativo").val(self.document.oNroCpe);
+				}
+			}
+		});
 	};
 
 	self.saveTest = () => {
@@ -49,9 +64,9 @@ var boletas = ( () => {
 							var num_cpe = response.data.callProcessOnlineResult.NUM_CPE;
 							self.update(num_cpe,(res_update) => {
 								if(res_update.success){
-									//self.document.oNroCpe = num_cpe;
 									customer.list_items = [];
 									customer.makeTable();
+									self.obtenerCorrelativo();
 									document.getElementById("frm_sales").reset();
 									$('#frm_sales').bootstrapValidator("resetForm",true);
 									$('#frm_add_item').bootstrapValidator("resetForm",true);
@@ -83,7 +98,7 @@ var boletas = ( () => {
 	};
 
 	self.obtenerDocumento = () => {
-		self.url = window.origin + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+self.document.oNroCpe;
+		self.url = window.origin + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+(parseInt(self.document.oNroCpe) - 1).toString().padStart(8,"0");
 		var link = document.createElement('a');
         link.href = self.url;
         link.target = '_blank';
@@ -112,7 +127,7 @@ var boletas = ( () => {
 		request.hor_emi = moment().format('hh:mm:ss');
 		request.cod_tip_ope = "0101";
 		request.serie = $("#nro_serie").val();
-		request.correlativo = "01001028";
+		request.correlativo = self.document.oNroCpe;
 		request.moneda = $("#moneda").val();
 		request.cod_tip_otr_doc_ref = tipo_doc_emi;
 		request.tip_doc_rct = tipo_doc;

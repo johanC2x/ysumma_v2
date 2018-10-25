@@ -41,6 +41,7 @@ class BoletasController extends Controller{
             $ventas->id_tipo_guia = $input["tipo_guia"];
             $ventas->nro_guia = $input["nro_guia"];
             $ventas->descripcion_guia = $input["desc_guia"];
+            $ventas->correlativo = $input["correlativo"];
             $ventas->tipo_doc = "BOL";
             if($ventas->save()){
                 return array("success" => true,"data" => $ventas);
