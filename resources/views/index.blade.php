@@ -202,6 +202,7 @@
 		<script src="{{ asset('/js/jquery-2.1.0.js') }}"></script>
 		<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('/js/bootstrapValidator.min.js') }}"></script>
+		<script src="{{ asset('/js/block-ui.js') }}"></script>
 		<script src="{{ asset('/js/jquery.slimscroll.min.js') }}"></script>
 		<script src="{{ asset('/js/jquery.sparkline.js') }}"></script>
 		<script src="{{ asset('/js/moment.js') }}"></script>

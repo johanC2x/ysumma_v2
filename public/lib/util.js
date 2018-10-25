@@ -11,6 +11,16 @@ var util = function () {
         }
     };
 
+    self.block = () => {
+        $.blockUI({ 
+            message: '<img src="http://localhost:8000/images/loading.gif" title="loading" height="80" />' 
+        });
+    };
+
+    self.unblock = () => {
+        $.unblockUI();
+    };
+
     self.addTime = (number,type) => {
         switch(type){
             case 'days':

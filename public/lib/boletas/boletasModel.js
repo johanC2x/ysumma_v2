@@ -44,6 +44,7 @@ var boletas = ( () => {
 	};
 
 	self.save = () => {
+		util.block();
 		var token = $("#_token").val();
 		$.ajax({
 			type:"POST",
@@ -58,11 +59,13 @@ var boletas = ( () => {
 						console.log(response);
 						if(response.success && response.data.hasOwnProperty("callProcessOnlineResult")){
 							if(response.data.callProcessOnlineResult.CODIGO === "002"){
+								util.unblock();
 								$("#modal_error").modal("show");
 								return false;
 							}
 							var num_cpe = response.data.callProcessOnlineResult.NUM_CPE;
 							self.update(num_cpe,(res_update) => {
+								util.unblock();
 								if(res_update.success){
 									customer.list_items = [];
 									customer.makeTable();
