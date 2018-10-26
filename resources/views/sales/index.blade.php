@@ -58,6 +58,8 @@
 											<input type="text" name="customer_id" id="customer_id" 
 													class="form-control">
 											<input type="hidden" name="cliente_id" id="cliente_id"/>
+											<input type="hidden" name="email" id="email"/>
+											<input type="hidden" name="correlativo" id="correlativo"/>
 										</div>
 									</div>
 									<div class="col-md-1">
@@ -485,6 +487,26 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <!-- MODAL DE OPERACION EXITOSA -->
+ <div class="modal fade" id="modal_success_factura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<br/>
+				<h4>
+					<center>
+						La operacion se realizó con éxito !!!
+					</center>
+				</h4>
+			</div>
+			<div class="modal-footer">
+				<a id="btn_download" href="javascript:void(0);" class="btn btn-primary">Descargar PDF</a>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
 			</div>
 		</div>
 	</div>

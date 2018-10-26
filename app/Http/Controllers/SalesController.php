@@ -40,8 +40,22 @@ class SalesController extends Controller{
             $ventas->id_tipo_guia = $input["tipo_guia"];
             $ventas->nro_guia = $input["nro_guia"];
             $ventas->descripcion_guia = $input["desc_guia"];
+            $ventas->correlativo = $input["correlativo"];
             $ventas->tipo_doc = "FAC";
+            if($ventas->save()){
+                return array("success" => true,"data" => $ventas);
+            }else{
+                return array("success" => false);
+            }
+        }else{
+            return array("success" => false);
+        }
+    }
 
+    public function update($id,$num_cpe){
+        if(!empty($num_cpe)){
+            $ventas = Ventas::find($id);
+            $ventas->num_cpe_tax = $num_cpe;
             if($ventas->save()){
                 return array("success" => true);
             }else{

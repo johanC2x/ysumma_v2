@@ -20,6 +20,7 @@ Route::get('/', function () {
 //MODULO DE VENTAS
 Route::get('/sales', 'SalesController@index');
 Route::post('/sales', 'SalesController@save');
+Route::get('/sales/{id}/{num_cpe}', 'SalesController@update');
 
 //MODULO DE BOLETAS
 Route::get('/boletas', 'BoletasController@index');

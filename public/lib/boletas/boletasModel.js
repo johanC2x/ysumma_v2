@@ -6,16 +6,16 @@ var boletas = ( () => {
 		document : {
 			oTipCpe : '03',
 			oSerCpe : 'B001',
-			oNroCpe : '01001028'
+			oNroCpe : ''
 		},
 		url : ''
 	};
  
 	self.init = () => {
-		self.obtenerCorrelativo(true);
+		self.obtenerCorrelativo();
 	};
 
-	self.obtenerCorrelativo = (isNew) => {
+	self.obtenerCorrelativo = () => {
 		$.ajax({
 			type:"GET",
 			data:{},
@@ -26,19 +26,6 @@ var boletas = ( () => {
 					self.document.oNroCpe = (parseInt(data.correlativo) + 1).toString().padStart(8,"0");
 					$("#correlativo").val(self.document.oNroCpe);
 				}
-			}
-		});
-	};
-
-	self.saveTest = () => {
-		var token = $("#_token").val();
-		$.ajax({
-			type:"GET",
-			data:$("#frm_sales").serialize(),
-			url:self.resource + '/test',
-			headers:{'X-CSRF-TOKEN' : token},
-			success:function(response){
-				console.log(response);
 			}
 		});
 	};

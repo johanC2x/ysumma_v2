@@ -1,10 +1,21 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    var self = sales;
+
+    self.init();
+
     //SETEANDO VALOR DE FECHAS DE EMISION ===========================================
     if(document.getElementById("fec_emision") !== null){
         document.getElementById("fec_emision").value = util.fec_emision;
     }
     //==============================================================================
+
+    if(document.getElementById("btn_download") !== null){
+        const btn_download = document.getElementById("btn_download");
+        btn_download.addEventListener("click" ,() => {
+            sales.obtenerDocumento();
+        });
+    }
 
     //SETEANDO VALOR DE FECHAS DE VENCIMIENTO =======================================
     if(document.getElementById("con_pago") !== null){
@@ -270,7 +281,13 @@ document.addEventListener("DOMContentLoaded",function(){
     }).on('success.form.bv', function(e) {
         e.preventDefault();
         if(customer.list_items.length > 0){
-            sales.save();
+            $.blockUI({
+                fadeIn: 1000, 
+                timeout:   2000, 
+                onBlock: function() { 
+                    sales.save();
+                }
+            });
         }else{
             util.setMessages("msg_sales_validate","insert_validate_sales");
         }
