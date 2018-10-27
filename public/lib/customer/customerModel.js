@@ -71,10 +71,10 @@ var customer = function () {
 		objeto.item_quantity = (item_quantity.value !== '') ? item_quantity.value:'';
 		objeto.item_unit = (item_unit.value !== '') ? item_unit.value:'';
 		objeto.item_afec = (item_afec.value !== '') ? item_afec.value:'';
-		objeto.item_price = (item_price.value !== '') ? item_price.value:0;
-		objeto.item_isc = (item_isc.value !== '') ? item_isc.value:0;
-		objeto.item_igv = (item_igv.value !== '') ? item_igv.value:0;
-		objeto.item_import = (item_import.value !== '') ? item_import.value:0;
+		objeto.item_price = (item_price.value !== '') ? parseFloat(item_price.value).toFixed(2):0;
+		objeto.item_isc = (item_isc.value !== '') ? parseFloat(item_isc.value).toFixed(2):0;
+		objeto.item_igv = (item_igv.value !== '') ? parseFloat(item_igv.value).toFixed(2):0;
+		objeto.item_import = (item_import.value !== '') ? parseFloat(item_import.value).toFixed(2):0;
 		self.list_items.push(objeto);
 		document.getElementById("_item_list").value = JSON.stringify(self.list_items);
 		self.makeTable();
@@ -95,7 +95,7 @@ var customer = function () {
 							<td><center>`+ obj.item_code +`</center></td>
 							<td><center>`+ obj.item_quantity +`</center></td>
 							<td><center>`+ obj.item_unit +`</center></td>
-							<td><center>`+ obj.item_afec +`</center></td>
+							<td><center>`+ obj.item_price +`</center></td>
 							<td><center>`+ obj.item_igv +`</center></td>
 							<td><center>`+ obj.item_import +`</center></td>
 						</tr>`;

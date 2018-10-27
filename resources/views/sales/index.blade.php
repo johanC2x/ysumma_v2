@@ -54,7 +54,7 @@
 								<div class="col-md-12">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label>Ingresar DNI o RUC</label>
+											<label>Ingresar RUC</label>
 											<input type="text" name="customer_id" id="customer_id" 
 													class="form-control">
 											<input type="hidden" name="cliente_id" id="cliente_id"/>

@@ -41,6 +41,7 @@ var sales = ( () => {
 				if(response.success){
 					self.current = response.data;
 					var request = self.makeData("01");
+					console.log(request);
 					util.callRest(request,"POST",(response) => {
 						console.log(response);
 						if(response.success && response.data.hasOwnProperty("callProcessOnlineResult")){
@@ -148,10 +149,10 @@ var sales = ( () => {
 		for(var i = 0;i < customer.list_items.length;i++){
 			var obj = {};
 			obj.service_doc_name = customer.list_items[i].item_name;
-			obj.service_doc_trib = customer.list_items[i].item_afec;
+			obj.service_doc_trib = customer.list_items[i].item_igv;
 			obj.service_doc_quantity = customer.list_items[i].item_quantity;
-			obj.service_doc_amount = customer.list_items[i].item_afec;
-			obj.service_doc_amount = customer.list_items[i].item_afec;
+			obj.service_doc_amount = customer.list_items[i].item_price;
+			obj.cod_und_itm = customer.list_items[i].item_unit;
 			obj.service_doc_name_detail = "";
 			arr_obj.push(obj);
 		}
@@ -164,7 +165,7 @@ var sales = ( () => {
 		let item_price_val = document.getElementById("item_price").value;
 		let item_quantity_val = document.getElementById("item_quantity").value;
 		if(item_afec_val !== "" && item_price_val !== "0" && item_quantity_val !== "0"){
-			let igv = (item_price_val * item_quantity_val) * 0.18;
+			let igv = (item_price_val) * 0.18;
 			let total = (item_price_val * item_quantity_val) + igv;
 			document.getElementById("item_igv").value = igv;
 			document.getElementById("item_import").value = total;
