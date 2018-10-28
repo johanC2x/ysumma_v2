@@ -34,10 +34,10 @@ class EmiteController extends Controller{
             case 'BOL':
                 $correlativo = Boletas::max('correlativo');
                 break;
-            case 'NOT':
+            case 'NOTA':
                 $correlativo = NotaCredito::max('correlativo');
                 break;  
-            case 'DEB':
+            case 'DEBITO':
                 $correlativo = NotaDebito::max('correlativo');
                 break;
         }

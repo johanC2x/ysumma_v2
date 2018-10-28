@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    notas.init();
+
     //SETEANDO VALOR POR FACTURA
     document.getElementById("ck_add_doc_in").checked = true;
 
@@ -8,6 +10,20 @@ document.addEventListener("DOMContentLoaded",function(){
         document.getElementById("fec_emision").value = util.fec_emision;
     }
     //==============================================================================
+
+    if(document.getElementById("btn_download") !== null){
+        const btn_download = document.getElementById("btn_download");
+        btn_download.addEventListener("click" ,() => {
+            notas.obtenerDocumento();
+        });
+    }
+
+    if(document.getElementById("nro_serie") !== null){
+        const nro_serie = document.getElementById("nro_serie");
+        nro_serie.addEventListener("change" ,() => {
+            notas.document.oSerCpe = nro_serie.value;
+        });
+    }
 
     //SETEANDO VALOR DE FECHAS DE VENCIMIENTO =======================================
     if(document.getElementById("con_pago") !== null){
@@ -288,7 +304,13 @@ document.addEventListener("DOMContentLoaded",function(){
     }).on('success.form.bv', function(e) {
         e.preventDefault();
         if(customer.list_items.length > 0){
-            notas.save();
+            $.blockUI({
+                fadeIn: 1000, 
+                timeout:   2000, 
+                onBlock: function() { 
+                    notas.save();
+                }
+            });
         }else{
             util.setMessages("msg_sales_validate","insert_validate_sales");
         }

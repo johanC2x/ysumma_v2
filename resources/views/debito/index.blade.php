@@ -61,6 +61,8 @@
                                                 <input type="text" name="customer_id" id="customer_id" 
                                                         class="form-control">
                                                 <input type="hidden" name="cliente_id" id="cliente_id"/>
+                                                <input type="hidden" name="email" id="email"/>
+                                                <input type="hidden" name="correlativo" id="correlativo"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -235,18 +237,11 @@
                                             <label>Motivo:</label>
                                             <select id="tipomotivo" name="tipomotivo" class="form-control">
                                                 <option selected="" value="">Seleccionar</option>
-                                                <option value="01">Anulación de la operación</option>
-                                                <option value="02">Anulación por error en el RUC</option>
-                                                <option value="03">Corrección por error en la descripción</option>
-                                                <option value="04">Descuento global</option>
-                                                <option value="05">Descuento por ítem</option>
-                                                <option value="06">Devolución Total</option>
-                                                <option value="07">Devolución por ítem</option>
-                                                <option value="08">Bonificación</option>
-                                                <option value="09">Disminución en el valor</option>
-                                                <option value="10">Otros Conceptos</option>
-                                                <option value="11">Ajustes de operaciones de exportación</option>
-                                                <option value="12">Ajustes afectos al IVAP</option>
+                                                <option value="01">Intereses por mora</option>
+                                                <option value="02">Aumento en el valor</option>
+                                                <option value="03">Penalidades / otros conceptos</option>
+                                                <option value="10">Ajustes de operaciones de exportación</option>
+                                                <option value="11">Ajustes afectos al IVAP</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
@@ -582,6 +577,26 @@
         </div>
         </div>
     </div>
+
+        <!-- MODAL DE OPERACION EXITOSA -->
+		<div class="modal fade" id="modal_success_debito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+                    <div class="modal-body">
+                        <br/>
+                        <h4>
+                            <center>
+                                La operacion se realizó con éxito !!!
+                            </center>
+                        </h4>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="btn_download" href="javascript:void(0);" class="btn btn-primary">Descargar PDF</a>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    </div>
+				</div>
+			</div>
+		</div>
 
     </div>
 

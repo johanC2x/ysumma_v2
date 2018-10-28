@@ -55,10 +55,25 @@ class NotaCreditoController extends Controller{
             $ventas->cliente_id = $input["cliente_id"];
             $ventas->id_tipo_guia = $input["tipo_guia"];
             $ventas->nro_guia = $input["nro_guia"];
+            $ventas->correlativo = $input["correlativo"];
             $ventas->descripcion_guia = $input["desc_guia"];
             $ventas->tipo_doc = (isset($input["ck_add_doc_in"])) ? "FAC" : "BOL";
             $ventas->id_tipo_motivo = $input["tipomotivo"];
             $ventas->sustento = $input["sustento"];
+            if($ventas->save()){
+                return array("success" => true,"data" => $ventas);
+            }else{
+                return array("success" => false);
+            }
+        }else{
+            return array("success" => false);
+        }
+    }
+
+    public function update($id,$num_cpe){
+        if(!empty($num_cpe)){
+            $ventas = NotaCredito::find($id);
+            $ventas->num_cpe_tax = $num_cpe;
             if($ventas->save()){
                 return array("success" => true);
             }else{

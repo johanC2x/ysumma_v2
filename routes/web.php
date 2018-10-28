@@ -31,10 +31,13 @@ Route::get('/boletas/{id}/{num_cpe}', 'BoletasController@update');
 Route::get('/nota-credito', 'NotaCreditoController@index');
 Route::post('/nota-credito', 'NotaCreditoController@save');
 Route::get('/nota-credito/{nro_doc_nota}/{tipo_doc}', 'NotaCreditoController@getNroDoc');
+Route::get('/nota-credito/update/{id}/{num_cpe}', 'NotaCreditoController@update');
 
 //MODULO DE NOTAS DE DEBITO
 Route::get('/nota-debito', 'NotaDebitoController@index');
 Route::post('/nota-debito', 'NotaDebitoController@save');
+Route::get('/nota-debito/{nro_doc_nota}/{tipo_doc}', 'NotaDebitoController@getNroDoc');
+Route::get('/nota-debito/update/{id}/{num_cpe}', 'NotaDebitoController@update');
 
 //MODULO DE PRUEBAS
 Route::get('/sales/test', 'SalesController@api');

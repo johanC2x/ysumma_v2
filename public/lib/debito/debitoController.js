@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
 
+    debito.init();
+
     //SETEANDO VALOR POR FACTURA
     document.getElementById("ck_add_doc_in").checked = true;
 
@@ -8,6 +10,24 @@ document.addEventListener("DOMContentLoaded",function(){
         document.getElementById("fec_emision").value = util.fec_emision;
     }
     //==============================================================================
+
+    //AGREGANDO FUNCIONALIDAD DE DESCARGA ===========================================
+    if(document.getElementById("btn_download") !== null){
+        const btn_download = document.getElementById("btn_download");
+        btn_download.addEventListener("click" ,() => {
+            debito.obtenerDocumento();
+        });
+    }
+    //===============================================================================
+
+    //AGREGANDO FUNCIONALIDAD DE SELECCION DE SERIE =================================
+    if(document.getElementById("nro_serie") !== null){
+        const nro_serie = document.getElementById("nro_serie");
+        nro_serie.addEventListener("change" ,() => {
+            debito.document.oSerCpe = nro_serie.value;
+        });
+    }
+    //===============================================================================
 
     //SETEANDO VALOR DE FECHAS DE VENCIMIENTO =======================================
     if(document.getElementById("con_pago") !== null){
@@ -288,7 +308,13 @@ document.addEventListener("DOMContentLoaded",function(){
     }).on('success.form.bv', function(e) {
         e.preventDefault();
         if(customer.list_items.length > 0){
-            debito.save();
+            $.blockUI({
+                fadeIn: 1000, 
+                timeout:   2000, 
+                onBlock: function() { 
+                    debito.save();
+                }
+            });
         }else{
             util.setMessages("msg_sales_validate","insert_validate_sales");
         }

@@ -46,8 +46,8 @@
                                                 <select id="nro_serie" name="nro_serie" 
                                                         class="form-control required" data-name="Número de Serie">
                                                     <option value="">Seleccionar</option>
-                                                    <option value="BC001">BC001</option>
-                                                    <option value="FC001">FC001</option>
+                                                    <option value="BC01">BC01</option>
+                                                    <option value="FC01">FC01</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -61,6 +61,8 @@
                                                 <input type="text" name="customer_id" id="customer_id" 
                                                         class="form-control">
                                                 <input type="hidden" name="cliente_id" id="cliente_id"/>
+                                                <input type="hidden" name="email" id="email"/>
+                                                <input type="hidden" name="correlativo" id="correlativo"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -582,6 +584,26 @@
             <button type="button" id="btn_guardar_cliente" class="btn btn-primary">Guardar</button>
             </div>
         </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE OPERACION EXITOSA -->
+    <div class="modal fade" id="modal_success_notas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <br/>
+                    <h4>
+                        <center>
+                            La operacion se realizó con éxito !!!
+                        </center>
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <a id="btn_download" href="javascript:void(0);" class="btn btn-primary">Descargar PDF</a>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -89,7 +89,6 @@ var boletas = ( () => {
 		var link = document.createElement('a');
         link.href = self.url;
         link.target = '_blank';
-        //link.download = "Boleta.pdf";
         document.body.appendChild(link);
         link.click();
 	};

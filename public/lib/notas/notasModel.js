@@ -2,10 +2,32 @@ var notas = ( () => {
 
 	var self = {
 		resource : window.location.href,
+		current : {},
+		document : {
+			oTipCpe : '07',
+			oSerCpe : '',
+			oNroCpe : ''
+		},
+		url : ''
 	};
  
 	self.init = () => {
-		
+		self.obtenerCorrelativo();
+	};
+
+	self.obtenerCorrelativo = () => {
+		$.ajax({
+			type:"GET",
+			data:{},
+			url: util.url + '/emite/correlativo/NOTA',
+			success:function(response){
+				if(response.success){
+					let data = response.data;
+					self.document.oNroCpe = (parseInt(data.correlativo) + 1).toString().padStart(8,"0");
+					$("#correlativo").val(self.document.oNroCpe);
+				}
+			}
+		});
 	};
 
 	self.obtenerNumeroRecibo = () => {
@@ -45,34 +67,59 @@ var notas = ( () => {
 			headers:{'X-CSRF-TOKEN' : token},
 			success:function(response){
 				if(response.success){
+					self.current = response.data;
 					var request = self.makeData("07");
 					console.log(request);
-					util.callRest(request,"POST",(response) => { 
+					util.callRest(request,"POST",(response) => {
 						console.log(response);
 						if(response.success && response.data.hasOwnProperty("callProcessOnlineResult")){
-							customer.list_items = [];
-							customer.makeTable();
-							document.getElementById("frm_sales").reset();
-							$('#frm_sales').bootstrapValidator("resetForm",true);
-							$('#frm_add_item').bootstrapValidator("resetForm",true);
-							$("#modal_success").modal("show");	
+							if(response.data.callProcessOnlineResult.CODIGO === "002"){
+								$("#modal_error").modal("show");
+								return false;
+							}
+							var num_cpe = response.data.callProcessOnlineResult.NUM_CPE;
+							self.update(num_cpe,(res_update) => {
+								if(res_update.success){
+									customer.list_items = [];
+									customer.makeTable();
+									self.obtenerCorrelativo();
+									document.getElementById("frm_sales").reset();
+									$('#frm_sales').bootstrapValidator("resetForm",true);
+									$('#frm_add_item').bootstrapValidator("resetForm",true);
+									$("#modal_success_notas").modal("show");
+								}else{
+									$("#modal_error").modal("show");
+								}
+							});
 						}else{
 							$("#modal_error").modal("show");
 						}
 					});
-					/*
-					customer.list_items = [];
-					customer.makeTable();
-					document.getElementById("frm_sales").reset();
-					$('#frm_sales').bootstrapValidator("resetForm",true);
-					$('#frm_add_item').bootstrapValidator("resetForm",true);
-					$("#modal_success").modal("show");
-					*/
 				}else{
 					$("#modal_error").modal("show");
 				}
 			}
 		});
+	};
+
+	self.update = (num_cpe_tax,callback) => {
+		$.ajax({
+			type:"GET",
+			data:{},
+			url:self.resource + "/update/" + self.current.id + "/" + num_cpe_tax,
+			success:function(response){
+				callback(response);
+			}
+		});
+	};
+
+	self.obtenerDocumento = () => {
+		self.url = window.origin + '/emite?oTipCpe='+self.document.oTipCpe+'&oSerCpe='+self.document.oSerCpe+'&oNroCpe='+(parseInt(self.document.oNroCpe) - 1).toString().padStart(8,"0");
+		var link = document.createElement('a');
+        link.href = self.url;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
 	};
 
 	self.makeData = (tipo_doc_emi) => {
@@ -95,7 +142,7 @@ var notas = ( () => {
 		request.hor_emi = moment().format('hh:mm:ss');
 		request.cod_tip_ope = "0101";
 		request.serie = $("#nro_serie").val();
-		request.correlativo = "01001003";
+		request.correlativo = notas.document.oNroCpe;
 		request.moneda = $("#moneda").val();
 		request.cod_tip_otr_doc_ref = tipo_doc_emi;
 		request.tip_doc_rct = tipo_doc;
@@ -129,10 +176,10 @@ var notas = ( () => {
 		for(var i = 0;i < customer.list_items.length;i++){
 			var obj = {};
 			obj.service_doc_name = customer.list_items[i].item_name;
-			obj.service_doc_trib = customer.list_items[i].item_afec;
+			obj.service_doc_trib = customer.list_items[i].item_igv;
 			obj.service_doc_quantity = customer.list_items[i].item_quantity;
-			obj.service_doc_amount = customer.list_items[i].item_afec;
-			obj.service_doc_amount = customer.list_items[i].item_afec;
+			obj.service_doc_amount = customer.list_items[i].item_price;
+			obj.cod_und_itm = customer.list_items[i].item_unit;
 			obj.service_doc_name_detail = "";
 			arr_obj.push(obj);
 		}
@@ -145,7 +192,7 @@ var notas = ( () => {
 		let item_price_val = document.getElementById("item_price").value;
 		let item_quantity_val = document.getElementById("item_quantity").value;
 		if(item_afec_val !== "" && item_price_val !== "0" && item_quantity_val !== "0"){
-			let igv = (item_price_val * item_quantity_val) * 0.18;
+			let igv = (item_price_val) * 0.18;
 			let total = (item_price_val * item_quantity_val) + igv;
 			document.getElementById("item_igv").value = igv;
 			document.getElementById("item_import").value = total;
