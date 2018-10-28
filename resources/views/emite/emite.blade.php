@@ -13,7 +13,7 @@
             "oFlgPdf" => true
         );
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://localhost:4254/document/extract"); //PRODUCCION
+        curl_setopt($curl, CURLOPT_URL, "http://34.203.202.3:4254/document/extract"); //PRODUCCION
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
