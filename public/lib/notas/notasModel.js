@@ -217,7 +217,7 @@ var notas = ( () => {
 			var obj_grav = self.valores_op_gravados.find( x => x === parseInt(afec.value));
 			if(obj_grav !== undefined){
 				if(price !== 0 && quantity!== 0){
-					self.monto_op_gravados = self.monto_op_gravados + (price * quantity);
+					self.monto_op_gravados = parseFloat(self.monto_op_gravados) + (price * quantity);
 					document.getElementById("op_gravadas").value = parseFloat(self.monto_op_gravados).toFixed(2);
 					if(parseInt(document.getElementById("op_exonerada").value) === 0){
 						document.getElementById("op_exonerada").value = 0.00;
@@ -236,7 +236,7 @@ var notas = ( () => {
 			var obj_inaf = self.valores_op_inafecto.find( x => x === parseInt(afec.value));
 			if(obj_inaf !== undefined){
 				if(price !== 0 && quantity!== 0){
-					self.monto_op_inafecto = self.monto_op_inafecto + (price * quantity);
+					self.monto_op_inafecto = parseFloat(self.monto_op_inafecto) + (price * quantity);
 					document.getElementById("op_inafecta").value = parseFloat(self.monto_op_inafecto).toFixed(2);
 					if(parseInt(document.getElementById("op_exonerada").value) === 0){
 						document.getElementById("op_exonerada").value = 0.00;
@@ -255,7 +255,7 @@ var notas = ( () => {
 			var obj_exon = self.valores_op_exonerado.find( x => x === parseInt(afec.value));
 			if(obj_exon !== undefined){
 				if(price !== 0 && quantity!== 0){
-					self.monto_op_exonerado = self.monto_op_exonerado + (price * quantity);
+					self.monto_op_exonerado = parseFloat(self.monto_op_exonerado) + (price * quantity);
 					document.getElementById("op_exonerada").value = parseFloat(self.monto_op_exonerado).toFixed(2);
 					if(parseInt(document.getElementById("op_inafecta").value) === 0){
 						document.getElementById("op_inafecta").value = 0.00;
@@ -274,7 +274,7 @@ var notas = ( () => {
 			var obj_grat = self.valores_op_gratuita.find( x => x === parseInt(afec.value));
 			if(obj_grat !== undefined){
 				if(price !== 0 && quantity !== 0){
-					self.monto_op_gratuita = self.monto_op_gratuita + (price * quantity);
+					self.monto_op_gratuita = parseFloat(self.monto_op_gratuita) + (price * quantity);
 					document.getElementById("op_gratuita").value = parseFloat(self.monto_op_gratuita).toFixed(2);
 					if(parseInt(document.getElementById("op_inafecta").value) === 0){
 						document.getElementById("op_inafecta").value = 0.00;

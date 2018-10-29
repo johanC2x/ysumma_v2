@@ -78,6 +78,9 @@ var customer = function () {
 		self.list_items.push(objeto);
 		document.getElementById("_item_list").value = JSON.stringify(self.list_items);
 		self.makeTable();
+
+		document.getElementById("item_quantity").value = 0;
+		document.getElementById("item_price").value = 0;
 	};
 
 	self.makeTable = () => {
