@@ -8,7 +8,15 @@ var sales = ( () => {
 			oSerCpe : 'F001',
 			oNroCpe : ''
 		},
-		url : ''
+		url : '',
+		valores_op_gravados : [10,17],
+		monto_op_gravados : 0,
+		valores_op_inafecto : [30],
+		monto_op_inafecto : 0,
+		valores_op_exonerado : [20],
+		monto_op_exonerado : 0,
+		valores_op_gratuita : [11,12,13,14,15,16,31,32,33,34,35,36,21],
+		monto_op_gratuita : 0
 	};
  
 	self.init = () => {
@@ -165,11 +173,60 @@ var sales = ( () => {
 		let item_price_val = document.getElementById("item_price").value;
 		let item_quantity_val = document.getElementById("item_quantity").value;
 		if(item_afec_val !== "" && item_price_val !== "0" && item_quantity_val !== "0"){
-			let igv = (item_price_val) * 0.18;
+			let igv = (item_price_val * item_quantity_val) * 0.18;
 			let total = (item_price_val * item_quantity_val) + igv;
-			document.getElementById("item_igv").value = igv;
-			document.getElementById("item_import").value = total;
+			document.getElementById("item_igv").value = parseFloat(igv).toFixed(2);
+			document.getElementById("item_import").value = parseFloat(total).toFixed(2);
 			document.getElementById("item_isc").value = 0;
+		}
+	};
+
+	self.calcularMontos = () => {
+		if(document.getElementById("item_afec").value !== ''){
+			let afec = document.getElementById("item_afec");
+			let price = parseFloat(document.getElementById("item_price").value);
+			let quantity = parseFloat(document.getElementById("item_quantity").value);
+			//OBTENIENDO TOTALES
+			var obj_grav = self.valores_op_gravados.find( x => x === parseInt(afec.value));
+			if(obj_grav !== undefined){
+				if(price !== 0 && quantity!== 0){
+					self.monto_op_gravados = self.monto_op_gravados + (price * quantity);
+					document.getElementById("op_gravadas").value = parseFloat(self.monto_op_gravados).toFixed(2);
+					document.getElementById("op_inafecta").value = 0.00;
+					document.getElementById("op_exonerada").value = 0.00;
+					document.getElementById("op_gratuita").value = 0.00;
+				}
+			}
+			var obj_inaf = self.valores_op_inafecto.find( x => x === parseInt(afec.value));
+			if(obj_inaf !== undefined){
+				if(price !== 0 && quantity!== 0){
+					self.monto_op_inafecto = self.monto_op_inafecto + (price * quantity);
+					document.getElementById("op_inafecta").value = parseFloat(self.monto_op_inafecto).toFixed(2);
+					document.getElementById("op_gravadas").value = 0.00;
+					document.getElementById("op_exonerada").value = 0.00;
+					document.getElementById("op_gratuita").value = 0.00;
+				}
+			}
+			var obj_exon = self.valores_op_exonerado.find( x => x === parseInt(afec.value));
+			if(obj_exon !== undefined){
+				if(price !== 0 && quantity!== 0){
+					self.monto_op_exonerado = self.monto_op_exonerado + (price * quantity);
+					document.getElementById("op_exonerada").value = parseFloat(self.monto_op_exonerado).toFixed(2);
+					document.getElementById("op_inafecta").value = 0.00;
+					document.getElementById("op_exonerada").value = 0.00;
+					document.getElementById("op_gratuita").value = 0.00;
+				}
+			}
+			var obj_grat = self.valores_op_gratuita.find( x => x === parseInt(afec.value));
+			if(obj_grat !== undefined){
+				if(price !== 0 && quantity !== 0){
+					self.monto_op_gratuita = self.monto_op_gratuita + (price * quantity);
+					document.getElementById("op_gratuita").value = parseFloat(self.monto_op_gratuita).toFixed(2);
+					document.getElementById("op_inafecta").value = 0.00;
+					document.getElementById("op_exonerada").value = 0.00;
+					document.getElementById("op_gravadas").value = 0.00;
+				}
+			}
 		}
 	};
 

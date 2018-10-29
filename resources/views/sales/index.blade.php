@@ -302,6 +302,43 @@
 						</form>
 						<br/>
 						<div class="row">
+							<!-- MONTOS TOTALES -->
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Op. Anticipos:</label>
+									<input type="text" name="op_anticipos" id="op_anticipos" class="form-control"
+											value="0" disabled="true"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Op. gravada:</label>
+									<input type="text" name="op_gravadas" id="op_gravadas" class="form-control"
+											value="0" disabled="true"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Op. Inafecta:</label>
+									<input type="text" name="op_inafecta" id="op_inafecta" class="form-control"
+											value="0" disabled="true"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Op. exonerada:</label>
+									<input type="text" name="op_exonerada" id="op_exonerada" class="form-control"
+											value="0" disabled="true"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Op. gratuita:</label>
+									<input type="text" name="op_gratuita" id="op_gratuita" class="form-control"
+											value="0" disabled="true"/>
+								</div>
+							</div>
+							<!-- / MONTOS TOTALES -->
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Total Igv:</label>

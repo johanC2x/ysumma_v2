@@ -511,6 +511,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_afec = document.getElementById("item_afec");
         item_afec.addEventListener("change" ,() => {
             notas.addImp();
+            notas.calcularMontos();
         });
     }
 
@@ -518,6 +519,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_price = document.getElementById("item_price");
         item_price.addEventListener("change" ,() => {
             notas.addImp();
+            notas.calcularMontos();
         });
     }
     
@@ -525,6 +527,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_quantity = document.getElementById("item_quantity");
         item_quantity.addEventListener("change" ,() => {
             notas.addImp();
+            notas.calcularMontos();
         });
     }
 

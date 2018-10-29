@@ -452,6 +452,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_afec = document.getElementById("item_afec");
         item_afec.addEventListener("change" ,() => {
             boletas.addImp();
+            boletas.calcularMontos();
         });
     }
 
@@ -459,6 +460,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_price = document.getElementById("item_price");
         item_price.addEventListener("change" ,() => {
             boletas.addImp();
+            boletas.calcularMontos();
         });
     }
     
@@ -466,6 +468,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const item_quantity = document.getElementById("item_quantity");
         item_quantity.addEventListener("change" ,() => {
             boletas.addImp();
+            boletas.calcularMontos();
         });
     }
 
