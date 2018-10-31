@@ -131,10 +131,10 @@ var boletas = ( () => {
 		request.nom_emi = util.app.entidad_nombre;
 		request.nom_rct = jQuery('input[name="customer_name"]').val();
 		request.mnt_tot_imp = parseFloat($("#total_importe").val()).toFixed(2);
-		request.mnt_tot_grv = "00.00";
-		request.mnt_tot_inf = "0.00";
-		request.mnt_tot_exr = "0,00";
-		request.mnt_tot_grt = "0.00";
+		request.mnt_tot_grv = parseFloat(self.valores_op_gravados).toFixed(2);
+		request.mnt_tot_inf = parseFloat(self.valores_op_inafecto).toFixed(2);
+		request.mnt_tot_exr = parseFloat(self.valores_op_exonerado).toFixed(2);
+		request.mnt_tot_grt = parseFloat(self.valores_op_gratuita).toFixed(2);
 		request.mnt_tot_exp = "0.00";
 		request.mnt_tot_isc = "0.00";
 		request.mnt_tot_trb_igv = parseFloat($("#total_igv").val()).toFixed(2);
