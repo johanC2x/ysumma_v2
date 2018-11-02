@@ -44,7 +44,7 @@ Route::get('/sales/test', 'SalesController@api');
 
 //MODULO DE CLIENTES
 Route::get('/customer', 'CustomerController@index');
-Route::get('/customer/{customer_id}', 'CustomerController@findByName');
+Route::get('/customer/{customer_id}/{is_sales}', 'CustomerController@findByName');
 Route::post('/customer', 'CustomerController@save');
 
 //MODULO DE EMISION DE RECIBOS

@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded",function(){
     if(document.getElementById("btn_buscar_cliente") !== null){
         const btn_buscar_cliente = document.getElementById("btn_buscar_cliente");
         btn_buscar_cliente.addEventListener("click" ,() => {
-            customer.buscarClientePorNombre();
+            customer.buscarClientePorNombre(true);
         });
     }
 

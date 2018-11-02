@@ -350,7 +350,7 @@
                                             <div class="form-group">
                                                 <label>Cantidad</label>
                                                 <input type="number" name="item_quantity" id="item_quantity"
-                                                        class="form-control add_imp" value="0" min="0" step="0.01"/>
+                                                        class="form-control add_imp" value="0" min="0"/>
                                             </div>
                                         </div>
                                     </div>

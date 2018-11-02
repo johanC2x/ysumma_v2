@@ -30,13 +30,15 @@ var customer = function () {
         });
 	};
 
-	self.buscarClientePorNombre = () => {
+	self.buscarClientePorNombre = (is_sales = false) => {
 		var customer_id = $("#customer_id").val();
+		var resource = (is_sales) ? self.resource + "/" + customer_id + "/1" : self.resource + "/" + customer_id + "/0";
+		console.log(resource);
 		if(customer_id !== ""){
 			$.ajax({
 				type:"GET",
 				data:{},
-				url:self.resource + "/" + customer_id,
+				url:resource,
 				success:function(response){
 					if(response.success){
 						var data = response.data;

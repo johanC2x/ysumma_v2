@@ -20,9 +20,16 @@ class CustomerController extends Controller{
         //return view('customer.index');
     }
 
-    public function findByName($customer_id = null){
+    public function findByName($customer_id = null,$is_sales = false){
+        $data = [];
         if(!empty($customer_id)){
-            $data = Clientes::where('nro_doc', 'like', '%' . $customer_id . '%')->first();
+            if($is_sales){
+                $data = Clientes::where('nro_doc', 'like', '%' . $customer_id . '%')
+                                ->where('tipo_doc', 'RUC')
+                                ->first();
+            }else{
+                $data = Clientes::where('nro_doc', 'like', '%' . $customer_id . '%')->first();
+            }
             if(!empty($data)){
                 return array("success" => true, "data" => $data);
             }else{

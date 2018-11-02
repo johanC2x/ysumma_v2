@@ -62,10 +62,7 @@ var sales = ( () => {
 								if(res_update.success){
 									customer.list_items = [];
 									customer.makeTable();
-									self.obtenerCorrelativo();
-									document.getElementById("frm_sales").reset();
-									$('#frm_sales').bootstrapValidator("resetForm",true);
-									$('#frm_add_item').bootstrapValidator("resetForm",true);
+									self.cleanForm();
 									$("#modal_success_factura").modal("show");
 								}else{
 									$("#modal_error").modal("show");
@@ -80,6 +77,19 @@ var sales = ( () => {
 				}
 			}
 		});
+	};
+
+	self.cleanForm = () => {
+		self.obtenerCorrelativo();
+		document.getElementById("frm_sales").reset();
+		$('#frm_sales').bootstrapValidator("resetForm",true);
+		$('#frm_add_item').bootstrapValidator("resetForm",true);
+		document.getElementById("fec_emision").value = util.fec_emision;
+		document.getElementById("item_quantity").value = 0;
+		document.getElementById("item_price").value = 0;
+		document.getElementById("item_isc").value = 0;
+		document.getElementById("item_igv").value = 0;
+		document.getElementById("item_import").value = 0;
 	};
 
 	self.update = (num_cpe_tax,callback) => {

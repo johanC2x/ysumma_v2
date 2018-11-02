@@ -56,7 +56,7 @@
 										<div class="form-group">
 											<label>Ingresar RUC</label>
 											<input type="text" name="customer_id" id="customer_id" 
-													class="form-control">
+													class="form-control" maxlength="11"/>
 											<input type="hidden" name="cliente_id" id="cliente_id"/>
 											<input type="hidden" name="email" id="email"/>
 											<input type="hidden" name="correlativo" id="correlativo"/>
@@ -381,7 +381,7 @@
 										<div class="form-group">
 											<label>Cantidad</label>
 											<input type="number" name="item_quantity" id="item_quantity"
-													class="form-control add_imp" value="0" min="0" step="0.01"/>
+													class="form-control add_imp" value="0" min="0"/>
 										</div>
 									</div>
 								</div>
