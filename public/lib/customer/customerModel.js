@@ -18,6 +18,7 @@ var customer = function () {
 			headers:{'X-CSRF-TOKEN' : token},
 			success:function(response){
 				if(response.success){
+					$("#modal_customer").modal("hide");
 					$('#frm_cliente').bootstrapValidator("resetForm",true);
 					document.getElementById("frm_cliente").reset();
 					util.setMessages("msg_customer","insert_success");
