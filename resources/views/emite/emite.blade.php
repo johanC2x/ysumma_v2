@@ -6,7 +6,7 @@
     */
 
     //URL SERVICIO
-    $url = "http://localhost:4254/document/extract";
+    $url = "http://34.203.202.3:4254/document/extract";
 
     //CREDENCIALES DE ACCESO
     $oUser = (isset($_POST["oUser"]) && !empty($_POST["oUser"])) ? $_POST["oUser"] : "demo@ysumma.feu.pe";
