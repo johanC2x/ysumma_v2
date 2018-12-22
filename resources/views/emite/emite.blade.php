@@ -44,9 +44,11 @@
         if(isset($response->data) && isset($response->data->COD_RPTA) && $response->data->COD_RPTA === "001"){
             $byte_string = null;
             if($data["oFlgXml"]){
+                $fecha = date('Y-m-d H:i:s');
+                $document = $oTipCpe."_".$oSerCpe."_".$oNroCpe."_".$fecha;
                 $byte_string = $response->data->DOC_TRIB_XML;
                 header('Content-type: text/xml');
-                header('Content-Disposition: attachment; filename="Boleta.xml"');
+                header('Content-Disposition: attachment; filename="'.$document.'.xml"');
                 print_r($byte_string);
             }else{
                 $byte_string = $response->data->DOC_TRIB_PDF;
