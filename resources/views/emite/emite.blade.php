@@ -9,14 +9,14 @@
     $url = "http://34.203.202.3:4254/document/extract";
 
     //CREDENCIALES DE ACCESO
-    $oUser = (isset($_POST["oUser"]) && !empty($_POST["oUser"])) ? $_POST["oUser"] : "demo@ysumma.feu.pe";
-    $oPass = (isset($_POST["oPass"]) && !empty($_POST["oPass"])) ? $_POST["oPass"] : "8aa37c67";
-    $oNroIde = (isset($_POST["oNroIde"]) && !empty($_POST["oNroIde"])) ? $_POST["oNroIde"] : "20602919057";
+    $oUser = (isset($_GET["oUser"]) && !empty($_GET["oUser"])) ? $_GET["oUser"] : "demo@ysumma.feu.pe";
+    $oPass = (isset($_GET["oPass"]) && !empty($_GET["oPass"])) ? $_GET["oPass"] : "8aa37c67";
+    $oNroIde = (isset($_GET["oNroIde"]) && !empty($_GET["oNroIde"])) ? $_GET["oNroIde"] : "20602919057";
 
     //DATOS DE RECIBO
-    $oNroCpe = (isset($_POST["oNroCpe"]) && !empty($_POST["oNroCpe"])) ? $_POST["oNroCpe"] : "00000007";//false
-    $oTipCpe = (isset($_POST["oTipCpe"]) && !empty($_POST["oTipCpe"])) ? $_POST["oTipCpe"] : "07";//false
-    $oSerCpe = (isset($_POST["oSerCpe"]) && !empty($_POST["oSerCpe"])) ? $_POST["oSerCpe"] : "BC01";//false
+    $oNroCpe = (isset($_GET["oNroCpe"]) && !empty($_GET["oNroCpe"])) ? $_GET["oNroCpe"] : "00000007";//false
+    $oTipCpe = (isset($_GET["oTipCpe"]) && !empty($_GET["oTipCpe"])) ? $_GET["oTipCpe"] : "07";//false
+    $oSerCpe = (isset($_GET["oSerCpe"]) && !empty($_GET["oSerCpe"])) ? $_GET["oSerCpe"] : "BC01";//false
 
     if($oNroCpe && $oTipCpe && $oSerCpe){
         $data = array(
