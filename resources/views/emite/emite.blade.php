@@ -44,18 +44,18 @@
         if(isset($response->data) && isset($response->data->COD_RPTA) && $response->data->COD_RPTA === "001"){
             $byte_string = null;
             if($data["oFlgXml"]){
-                $fecha = date('Y-m-d H:i:s');
-                switch($oTipCpe){
-                    case '01':
+                $fecha = date('Y-m-d');
+                switch((int)$oTipCpe){
+                    case 1:
                         $document = "FACTURA_".$oNroCpe."_".$fecha;
                         break;
-                    case '02':
+                    case 2:
                         $document = "BOLETA_".$oNroCpe."_".$fecha;
                         break;
-                    case '07':
+                    case 7:
                         $document = "NOTA_CREDITO_".$oNroCpe."_".$fecha;
                         break;
-                    case '08':
+                    case 8:
                         $document = "NOTA_DEBITO_".$oNroCpe."_".$fecha;
                         break;
                 }
