@@ -45,12 +45,12 @@
             $byte_string = null;
             if($data["oFlgXml"]){
                 $fecha = date('Y-m-d');
-                
+
                 switch((int)$oTipCpe){
                     case 1:
                         $document = "FACTURA_".$oNroCpe."_".$fecha;
                         break;
-                    case 2:
+                    case 3:
                         $document = "BOLETA_".$oNroCpe."_".$fecha;
                         break;
                     case 7:
