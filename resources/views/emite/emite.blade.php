@@ -45,7 +45,20 @@
             $byte_string = null;
             if($data["oFlgXml"]){
                 $fecha = date('Y-m-d H:i:s');
-                $document = $oTipCpe."_".$oSerCpe."_".$oNroCpe."_".$fecha;
+                switch($oTipCpe){
+                    case '01':
+                        $document = "FACTURA_".$oNroCpe."_".$fecha;
+                        break;
+                    case '02':
+                        $document = "BOLETA_".$oNroCpe."_".$fecha;
+                        break;
+                    case '07':
+                        $document = "NOTA_CREDITO_".$oNroCpe."_".$fecha;
+                        break;
+                    case '08':
+                        $document = "NOTA_DEBITO_".$oNroCpe."_".$fecha;
+                        break;
+                }
                 $byte_string = $response->data->DOC_TRIB_XML;
                 header('Content-type: text/xml');
                 header('Content-Disposition: attachment; filename="'.$document.'.xml"');
