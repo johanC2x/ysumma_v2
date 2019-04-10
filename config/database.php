@@ -45,7 +45,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => 'ysumma_db', //env('DB_DATABASE', 'forge')
             'username' => 'root', //env('DB_USERNAME', 'forge')
-            'password' => '',//env('DB_PASSWORD', '')
+            'password' => '1234',//env('DB_PASSWORD', '')
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

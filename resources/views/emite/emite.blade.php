@@ -29,6 +29,7 @@
             "oFlgXml" => true,
             "oFlgPdf" => false
         );
+
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url); //PRODUCCION
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
